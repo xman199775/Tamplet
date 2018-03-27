@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\dailyLateReportModel.o
+./debug\departementsModel.o
+./debug\employeesModel.o
+./debug\holidayModel.o
+./debug\modifySalaryModel.o
+./debug\dailyLateReportController.o
+./debug\dailyLateReportController.o
+./debug\departementsController.o
+./debug\employeescontroller.o
+./debug\holidayController.o
+./debug\moc_mainwindow.o
+);
