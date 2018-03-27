@@ -30,7 +30,12 @@ SOURCES += \
     model/departementsModel.cpp \
     model/employeesModel.cpp \
     model/holidayModel.cpp \
-    model/modifySalaryModel.cpp
+    model/modifySalaryModel.cpp \
+    controller/dailyLateReportController.cpp \
+    controller/dailyLateReportController.cpp \
+    controller/departementsController.cpp \
+    controller/employeescontroller.cpp \
+    controller/holidayController.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -38,7 +43,11 @@ HEADERS += \
     model/departementsModel.h \
     model/employeesModel.h \
     model/holidayModel.h \
-    model/modifySalaryModel.h
+    model/modifySalaryModel.h \
+    controller/dailyLateReportController.h \
+    controller/departementsController.h \
+    controller/employeescontroller.h \
+    controller/holidayController.h
 
 FORMS += \
     view/mainwindow.ui
