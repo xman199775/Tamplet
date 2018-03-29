@@ -8,6 +8,7 @@ class dailyLateReportModel
     int lateTime;
     QDate dateOfLate;
 public:
+    dailyLateReportModel(QString employeeID = "",int employeeDepID = 0, int lateTime = 0, QDate dateOfLate = NULL );
     QString getEmployeeID() const;
     void    setEmployeeID(const QString &value);
     int     getEmployeeDep() const;

@@ -1,5 +1,28 @@
 #include "employeesModel.h"
 
+employeesModel::employeesModel(QString employeeName = "", QString preferedName = "", QString empId = "",
+               QString martialStatus = "", QChar *SSN[14] = NULL, QDate dateBirth = NULL,
+               QString address = "", QString phoneNumber = "", QString homeAddress = "",
+               QString email = "", QString notes = "", QTime shiftBegTime = NULL,
+               QTime shiftEndTime = NULL, QString qualification = "", double salary = 0.0 )
+{
+    this->employeeName  = employeeName  ;
+    this->preferedName  = preferedName  ;
+    this->empId         = empId         ;
+    this->martialStatus = martialStatus ;
+    this->SSN           = SSN           ;
+    this->dateBirth     = dateBirth     ;
+    this->address       = address       ;
+    this->phoneNumber   = phoneNumber   ;
+    this->homeAddress   = homeAddress   ;
+    this->email         = email         ;
+    this->notes         = notes         ;
+    this->shiftBegTime  = shiftBegTime  ;
+    this->shiftEndTime  = shiftEndTime  ;
+    this->qualification = qualification ;
+    this->salary        = salary        ;
+}
+
 QString employeesModel::getEmployeeName() const
 {
     return employeeName;

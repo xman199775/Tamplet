@@ -11,6 +11,8 @@ class holidayModel
     QString leaveNotes;
 
     public:
+        holidayModel(QString empID = "", QDate   leaveDate = NULL, QDate   backDate = NULL,
+                     QString leaveReasons = "", QString leaveNotes = "" );
         QString getEmpID() const;
         void    setEmpID(const QString &value);
         QDate   getLeaveDate() const;

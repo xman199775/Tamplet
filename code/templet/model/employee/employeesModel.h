@@ -21,6 +21,11 @@ class employeesModel
     double salary;
 
     public:
+        employeesModel(QString employeeName = "", QString preferedName = "", QString empId = "",
+                       QString martialStatus = "", QChar *SSN[14] = NULL, QDate dateBirth = NULL,
+                       QString address = "", QString phoneNumber = "", QString homeAddress = "",
+                       QString email = "", QString notes = "", QTime shiftBegTime = NULL,
+                       QTime shiftEndTime = NULL, QString qualification = "", double salary = 0.0 );
         QString getEmployeeName() const;
         void    setEmployeeName(const QString &value);
         QString getPreferedName() const;

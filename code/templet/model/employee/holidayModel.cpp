@@ -1,5 +1,15 @@
 #include "holidayModel.h"
 
+holidayModel::holidayModel(QString empID = "", QDate   leaveDate = NULL, QDate   backDate = NULL,
+             QString leaveReasons = "", QString leaveNotes = "" )
+{
+    this->empID        = empID        ;
+    this->leaveDate    = leaveDate    ;
+    this->backDate     = backDate     ;
+    this->leaveReasons = leaveReasons ;
+    this->leaveNotes   = leaveNotes   ;
+}
+
 QString holidayModel::getEmpID() const
 {
     return empID;

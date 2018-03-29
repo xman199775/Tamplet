@@ -1,5 +1,14 @@
 #include "dailyLateReportModel.h"
 
+dailyLateReportModel::dailyLateReportModel(QString employeeID = "", int employeeDepID = 0, int lateTime = 0, QDate dateOfLate = NULL )
+{
+    this->employeeID     = employeeID    ;
+    this->employeeDepID  = employeeDepID ;
+    this->lateTime       = lateTime      ;
+    this->dateOfLate     = dateOfLate    ;
+
+}
+
 QString dailyLateReportModel::getEmployeeID() const
 {
     return employeeID;

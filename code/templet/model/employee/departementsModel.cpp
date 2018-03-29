@@ -1,5 +1,12 @@
 #include "departementsModel.h"
 
+departementsModel::departementsModel(QString depName = "", int     depID = 0)
+{
+    this->depName = depName ;
+    this->depID   = depID   ;
+
+}
+
 QString departementsModel::getDepName() const
 {
     return depName;
