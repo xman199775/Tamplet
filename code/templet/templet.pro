@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     system/main.cpp \
-    view/mainwindow.cpp \
     model/dailyLateReportModel.cpp \
     model/departementsModel.cpp \
     model/employeesModel.cpp \
@@ -38,7 +37,6 @@ SOURCES += \
     controller/holidayController.cpp
 
 HEADERS += \
-    view/mainwindow.h \
     model/dailyLateReportModel.h \
     model/departementsModel.h \
     model/employeesModel.h \
@@ -49,5 +47,4 @@ HEADERS += \
     controller/employeescontroller.h \
     controller/holidayController.h
 
-FORMS += \
-    view/mainwindow.ui
+FORMS +=
