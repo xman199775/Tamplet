@@ -25,26 +25,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     system/main.cpp \
-    model/dailyLateReportModel.cpp \
-    model/departementsModel.cpp \
-    model/employeesModel.cpp \
-    model/holidayModel.cpp \
-    model/modifySalaryModel.cpp \
-    controller/dailyLateReportController.cpp \
-    controller/dailyLateReportController.cpp \
-    controller/departementsController.cpp \
-    controller/employeescontroller.cpp \
-    controller/holidayController.cpp
+    model/employee/dailyLateReportModel.cpp \
+    model/employee/departementsModel.cpp \
+    model/employee/employeesModel.cpp \
+    model/employee/holidayModel.cpp \
+    model/employee/modifysalarymodel.cpp \
+    controller/employee/dailyLateReportController.cpp \
+    controller/employee/departementsController.cpp \
+    controller/employee/employeescontroller.cpp \
+    controller/employee/holidayController.cpp
 
 HEADERS += \
-    model/dailyLateReportModel.h \
-    model/departementsModel.h \
-    model/employeesModel.h \
-    model/holidayModel.h \
-    model/modifySalaryModel.h \
-    controller/dailyLateReportController.h \
-    controller/departementsController.h \
-    controller/employeescontroller.h \
-    controller/holidayController.h
+    model/employee/dailyLateReportModel.h \
+    model/employee/departementsModel.h \
+    model/employee/employeesModel.h \
+    model/employee/holidayModel.h \
+    model/employee/modifysalarymodel.h \
+    controller/employee/dailyLateReportController.h \
+    controller/employee/departementsController.h \
+    controller/employee/employeescontroller.h \
+    controller/employee/holidayController.h
 
 FORMS +=
