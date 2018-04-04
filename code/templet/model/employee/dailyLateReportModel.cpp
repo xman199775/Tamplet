@@ -1,6 +1,6 @@
 #include "dailyLateReportModel.h"
 
-dailyLateReportModel::dailyLateReportModel(QString employeeID = "", int employeeDepID = 0, int lateTime = 0, QDate dateOfLate = NULL )
+dailyLateReportModel::dailyLateReportModel(QString employeeID , int employeeDepID , int lateTime , QDate dateOfLate )
 {
     this->employeeID     = employeeID    ;
     this->employeeDepID  = employeeDepID ;

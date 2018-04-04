@@ -1,16 +1,16 @@
 #include "employeesModel.h"
 
-employeesModel::employeesModel(QString employeeName = "", QString preferedName = "", QString empId = "",
-               QString martialStatus = "", QChar *SSN[14] = NULL, QDate dateBirth = NULL,
-               QString address = "", QString phoneNumber = "", QString homeAddress = "",
-               QString email = "", QString notes = "", QTime shiftBegTime = NULL,
-               QTime shiftEndTime = NULL, QString qualification = "", double salary = 0.0 )
+employeesModel::employeesModel(QString employeeName, QString preferedName, QString empId,
+               QString martialStatus, QChar *SSN[14], QDate dateBirth,
+               QString address, QString phoneNumber, QString homeAddress,
+               QString email, QString notes, QTime shiftBegTime,
+               QTime shiftEndTime, QString qualification, double salary)
 {
     this->employeeName  = employeeName  ;
     this->preferedName  = preferedName  ;
     this->empId         = empId         ;
     this->martialStatus = martialStatus ;
-    this->SSN           = SSN           ;
+    this->SSN = SSN                     ;
     this->dateBirth     = dateBirth     ;
     this->address       = address       ;
     this->phoneNumber   = phoneNumber   ;

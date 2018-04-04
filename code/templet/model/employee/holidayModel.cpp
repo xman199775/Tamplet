@@ -1,7 +1,7 @@
 #include "holidayModel.h"
 
-holidayModel::holidayModel(QString empID = "", QDate   leaveDate = NULL, QDate   backDate = NULL,
-             QString leaveReasons = "", QString leaveNotes = "" )
+holidayModel::holidayModel(QString empID, QDate leaveDate, QDate backDate,
+             QString leaveReasons, QString leaveNotes)
 {
     this->empID        = empID        ;
     this->leaveDate    = leaveDate    ;

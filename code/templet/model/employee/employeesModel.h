@@ -8,24 +8,24 @@ class employeesModel
     QString preferedName;
     QString empId;
     QString martialStatus;
-    QChar *SSN[14];
-    QDate dateBirth;
+    QChar   *SSN[14];
+    QDate   dateBirth;
     QString address;
     QString phoneNumber;
     QString homeAddress;
     QString email;
     QString notes;
-    QTime shiftBegTime;
-    QTime shiftEndTime;
+    QTime   shiftBegTime;
+    QTime   shiftEndTime;
     QString qualification;
-    double salary;
+    double  salary;
 
     public:
         employeesModel(QString employeeName = "", QString preferedName = "", QString empId = "",
-                       QString martialStatus = "", QChar *SSN[14] = NULL, QDate dateBirth = NULL,
+                       QString martialStatus = "", QChar *SSN[14] = NULL, QDate dateBirth= QDate(0,0,0),
                        QString address = "", QString phoneNumber = "", QString homeAddress = "",
-                       QString email = "", QString notes = "", QTime shiftBegTime = NULL,
-                       QTime shiftEndTime = NULL, QString qualification = "", double salary = 0.0 );
+                       QString email = "", QString notes = "", QTime shiftBegTime = QTime(0,0,0,0),
+                       QTime shiftEndTime = QTime(0,0,0,0), QString qualification = "", double salary = 0.0 );
         QString getEmployeeName() const;
         void    setEmployeeName(const QString &value);
         QString getPreferedName() const;

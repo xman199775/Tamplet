@@ -1,7 +1,7 @@
 #include "modifysalarymodel.h"
 
-modifySalaryModel::modifySalaryModel(QString employeeID = "", QString adminID = "", QDateTime dateOfModify = NULL,
-                                     double amount = 0.0, QString reason = "", QString note = "", bool type)
+modifySalaryModel::modifySalaryModel(QString employeeID, QString adminID, QDateTime dateOfModify,
+                                     double amount, QString reason, QString note, bool type)
 {
     this->employeeID    = employeeID   ;
     this->adminID       = adminID      ;

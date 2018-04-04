@@ -13,7 +13,7 @@ private:
     QString   note        ;
     bool       type       ; // true  for increasing , false for decreasing
 public:
-    modifySalaryModel(QString employeeID = "", QString adminID = "", QDateTime dateOfModify = NULL,
+    modifySalaryModel(QString employeeID = "", QString adminID = "", QDateTime dateOfModify(0,0,0,0),
                       double amount = 0.0, QString reason = "", QString note = "", bool type);
     bool getType() const;
     void setType(bool value);
