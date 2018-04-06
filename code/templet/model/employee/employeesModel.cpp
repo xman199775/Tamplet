@@ -162,3 +162,11 @@ void employeesModel::setQualification(const QString &value)
 {
     qualification = value;
 }
+QString employeesModel::getSSN() const
+{
+    return SSN;
+}
+void employeesModel::setSSN(const QString &value)
+{
+    SSN = value;
+}

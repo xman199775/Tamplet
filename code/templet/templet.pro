@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 
-QT       +=  core gui qml quick charts sql
+QT       +=  core gui sql #charts qml quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -35,7 +35,8 @@ SOURCES += \
     controller/employee/departementsController.cpp \
     controller/employee/employeescontroller.cpp \
     controller/employee/holidayController.cpp \
-    system/serverconnections.cpp
+    system/serverconnections.cpp \
+    repositories/employeerepository.cpp
 
 HEADERS += \
     model/employee/dailyLateReportModel.h \
@@ -47,7 +48,8 @@ HEADERS += \
     controller/employee/departementsController.h \
     controller/employee/employeescontroller.h \
     controller/employee/holidayController.h \
-    system/serverconnections.h
+    system/serverconnections.h \
+    repositories/employeerepository.h
 
 RESOURCES += \
     qml.qrc

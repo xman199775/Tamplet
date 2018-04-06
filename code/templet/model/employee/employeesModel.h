@@ -32,6 +32,8 @@ public:
     void    setPreferedName(const QString &value);
     QString getEmpId() const;
     void    setEmpId(QString value);
+    QString getSSN() const;
+    void    setSSN(const QString &value);
     QString getMartialStatus() const;
     void    setMartialStatus(const QString &value);
     QDate   getDateBirth() const;
