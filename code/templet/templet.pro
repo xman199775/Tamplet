@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 
-QT       +=  core gui qml quick charts sql
+QT       +=  core gui sql charts qml quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
