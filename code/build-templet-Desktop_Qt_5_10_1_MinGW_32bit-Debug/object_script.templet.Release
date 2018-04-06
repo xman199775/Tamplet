@@ -10,4 +10,5 @@ INPUT(
 ./release\employeescontroller.o
 ./release\holidayController.o
 ./release\serverconnections.o
+./release\qrc_qml.o
 );

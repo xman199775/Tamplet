@@ -49,3 +49,6 @@ HEADERS += \
     controller/employee/holidayController.h \
     system/serverconnections.h
 
+RESOURCES += \
+    qml.qrc
+
