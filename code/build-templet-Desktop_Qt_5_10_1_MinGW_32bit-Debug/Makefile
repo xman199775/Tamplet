@@ -212,6 +212,7 @@ Makefile: ../templet/templet.pro C:/Qt2/5.10.1/mingw53_32/mkspecs/win32-g++/qmak
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qt_config.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/toolchain.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/default_pre.prf \
@@ -226,6 +227,7 @@ Makefile: ../templet/templet.pro C:/Qt2/5.10.1/mingw53_32/mkspecs/win32-g++/qmak
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/resources.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/moc.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/win32/opengl.prf \
+		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/uic.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qmake_use.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/file_copies.prf \
 		C:/Qt2/5.10.1/mingw53_32/mkspecs/features/win32/windows.prf \
@@ -236,10 +238,11 @@ Makefile: ../templet/templet.pro C:/Qt2/5.10.1/mingw53_32/mkspecs/win32-g++/qmak
 		../templet/templet.pro \
 		C:/Qt2/5.10.1/mingw53_32/lib/qtmaind.prl \
 		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Quick.prl \
+		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Charts.prl \
+		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Widgets.prl \
 		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Gui.prl \
 		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Qml.prl \
 		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Network.prl \
-		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Sql.prl \
 		C:/Qt2/5.10.1/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ..\templet\templet.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -393,6 +396,7 @@ C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qt_functions.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qt_config.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/win32-g++/qmake.conf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/exclusive_builds.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/toolchain.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/default_pre.prf:
@@ -407,6 +411,7 @@ C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qt.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/resources.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/moc.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/win32/opengl.prf:
+C:/Qt2/5.10.1/mingw53_32/mkspecs/features/uic.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/qmake_use.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/file_copies.prf:
 C:/Qt2/5.10.1/mingw53_32/mkspecs/features/win32/windows.prf:
@@ -417,10 +422,11 @@ C:/Qt2/5.10.1/mingw53_32/mkspecs/features/lex.prf:
 ../templet/templet.pro:
 C:/Qt2/5.10.1/mingw53_32/lib/qtmaind.prl:
 C:/Qt2/5.10.1/mingw53_32/lib/Qt5Quick.prl:
+C:/Qt2/5.10.1/mingw53_32/lib/Qt5Charts.prl:
+C:/Qt2/5.10.1/mingw53_32/lib/Qt5Widgets.prl:
 C:/Qt2/5.10.1/mingw53_32/lib/Qt5Gui.prl:
 C:/Qt2/5.10.1/mingw53_32/lib/Qt5Qml.prl:
 C:/Qt2/5.10.1/mingw53_32/lib/Qt5Network.prl:
-C:/Qt2/5.10.1/mingw53_32/lib/Qt5Sql.prl:
 C:/Qt2/5.10.1/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\templet\templet.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

@@ -1,7 +1,7 @@
 #include "employeesModel.h"
 
 employeesModel::employeesModel(QString employeeName, QString preferedName, QString empId,
-               QString martialStatus, QChar *SSN[14], QDate dateBirth,
+               QString martialStatus, QString SSN, QDate dateBirth,
                QString address, QString phoneNumber, QString homeAddress,
                QString email, QString notes, QTime shiftBegTime,
                QTime shiftEndTime, QString qualification, double salary)
@@ -10,7 +10,7 @@ employeesModel::employeesModel(QString employeeName, QString preferedName, QStri
     this->preferedName  = preferedName  ;
     this->empId         = empId         ;
     this->martialStatus = martialStatus ;
-    this->SSN = SSN                     ;
+    this->SSN           = SSN           ;
     this->dateBirth     = dateBirth     ;
     this->address       = address       ;
     this->phoneNumber   = phoneNumber   ;

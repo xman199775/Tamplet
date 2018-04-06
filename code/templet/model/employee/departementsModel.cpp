@@ -1,10 +1,8 @@
 #include "departementsModel.h"
 
-<<<<<<< HEAD
-departementsModel::departementsModel(QString depName , int depID )
-=======
+
 departementsModel::departementsModel(QString depName , int     depID )
->>>>>>> 9a75bec966d72e025083737f4ff4e359bf615871
+
 {
     this->depName = depName ;
     this->depID   = depID   ;

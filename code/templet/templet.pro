@@ -4,8 +4,10 @@
 #
 #-------------------------------------------------
 
-QT       += quick  sql
 
+QT       +=  core gui qml quick charts
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = templet
 TEMPLATE = app
