@@ -4,9 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += quick  sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = templet
 TEMPLATE = app
@@ -33,7 +32,8 @@ SOURCES += \
     controller/employee/dailyLateReportController.cpp \
     controller/employee/departementsController.cpp \
     controller/employee/employeescontroller.cpp \
-    controller/employee/holidayController.cpp
+    controller/employee/holidayController.cpp \
+    system/serverconnections.cpp
 
 HEADERS += \
     model/employee/dailyLateReportModel.h \
@@ -44,6 +44,6 @@ HEADERS += \
     controller/employee/dailyLateReportController.h \
     controller/employee/departementsController.h \
     controller/employee/employeescontroller.h \
-    controller/employee/holidayController.h
+    controller/employee/holidayController.h \
+    system/serverconnections.h
 
-FORMS +=
