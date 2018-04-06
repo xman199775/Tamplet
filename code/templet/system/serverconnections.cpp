@@ -1,5 +1,5 @@
 #include "serverconnections.h"
-
+serverConnections *serverConnections::instance=NULL;
 serverConnections::serverConnections()
 {
 
@@ -39,4 +39,13 @@ QSqlDatabase serverConnections::getserverConnections(QString serverName)
     }
     return allServer.value(serverName)->mydata;
 
+}
+
+serverConnections* serverConnections::getInstance()
+{
+    if(instance==NULL)
+    {
+        instance=new serverConnections();
+    }
+    return instance;
 }
