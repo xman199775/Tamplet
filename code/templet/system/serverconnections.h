@@ -47,11 +47,14 @@ private:
     int numberOfConnections=0;
     QMap<QString,server*> allServer;
     serverConnections();
+    static serverConnections *instance;
+
 public:
     void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName);
     bool connectToServer(QString serverName);
     void disconnectFromServer(QString serverName);
     QSqlDatabase getserverConnections(QString serverName);
+    static serverConnections *getInstance();
 
 
 };
