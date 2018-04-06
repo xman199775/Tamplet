@@ -45,7 +45,7 @@ private:
 
     };
     int numberOfConnections=0;
-    QMap<QString,server> allServer;
+    QMap<QString,server*> allServer;
     serverConnections();
 public:
     void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName);
