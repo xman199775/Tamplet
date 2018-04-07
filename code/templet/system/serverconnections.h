@@ -51,7 +51,7 @@ private:
     static serverConnections *instance;
 
 public:
-    void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName, int port);
+    void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName, int port=3306);
     bool connectToServer(QString serverName);
     void disconnectFromServer(QString serverName);
     QSqlDatabase getserverConnections(QString serverName);
