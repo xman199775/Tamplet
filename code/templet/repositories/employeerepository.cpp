@@ -8,10 +8,11 @@ employeeRepository::employeeRepository()
 }
 bool employeeRepository:: addEmployee(employeesModel employee)
 {
-    QSqlQuery InsertQuery;
 
-    InsertQuery.prepare("INSERT INTO Employee (Empid, Name, SSN, NickName, BirthDate, Address, PhoneNum, Email, ShiftBeg, ShiftEnd, ClearSalary, Certti) "
-                  "VALUES (:Empid, :Name, :SSN, :NickName, :BirthDate, :Address, :PhoneNum, :Email, :ShiftBeg, :ShiftEnd, :ClearSalary, :Certti)");
+    QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    InsertQuery.prepare("INSERT INTO Employee ( Empid,  Name,  SSN,  NickName,  BirthDate,  Address,  PhoneNum,  Email,  ShiftBeg,  ShiftEnd,  ClearSalary,  Certti)"
+                                      "VALUES (:Empid, :Name, :SSN, :NickName, :BirthDate, :Address, :PhoneNum, :Email, :ShiftBeg, :ShiftEnd, :ClearSalary, :Certti)");
 
     InsertQuery.bindValue(":Empid", employee.getEmpId());
     InsertQuery.bindValue(":Name", employee.getEmployeeName());
@@ -30,7 +31,7 @@ bool employeeRepository:: addEmployee(employeesModel employee)
 }
 bool employeeRepository:: deleteEmployee(int empId)
 {
-    QSqlQuery deleteQuery;
+    QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
     deleteQuery.prepare("DELETE FROM Employee WHERE Empid = :Empid ");
 
     deleteQuery.bindValue(":Empid", empId);

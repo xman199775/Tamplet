@@ -5,9 +5,9 @@ serverConnections::serverConnections()
 
 }
 
-void  serverConnections::creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName)
+void  serverConnections::creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName,int port)
 {
-    server *temp=new server( driver, hostName, userName, passWord, dataBaseName);
+    server *temp=new server( driver, hostName, userName, passWord, dataBaseName,port);
     allServer.insert(serverName,temp);
 }
 bool serverConnections::connectToServer(QString serverName)
