@@ -5,12 +5,7 @@
 #-------------------------------------------------
 
 
-<<<<<<< HEAD
-QT       +=  core gui sql #charts qml quick
-=======
 QT       +=  core gui sql charts qml quick
->>>>>>> dcc5698cf68cc0ad64d0d6a56bb9024761e25a43
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = templet

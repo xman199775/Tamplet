@@ -1,6 +1,6 @@
 #include "employeeRepository.h"
-#include <model\employee\employeesModel.h>
-#include <system\serverconnections.h>
+#include <model/employee/employeesModel.h>
+#include <system/serverconnections.h>
 
 employeeRepository::employeeRepository()
 {

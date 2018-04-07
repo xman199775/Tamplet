@@ -10,13 +10,14 @@ private:
     {
         QSqlDatabase mydata;
         bool connectSuccess=false;
-        server(QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName)
+        server(QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName, int port)
         {
-            mydata= QSqlDatabase::addDatabase(driver);
+            mydata = QSqlDatabase::addDatabase(driver);
             mydata.setHostName(hostName);
             mydata.setUserName(userName);
             mydata.setPassword(passWord);
             mydata.setDatabaseName(dataBaseName);
+            mydata.setPort(port);
         }
         bool connect()
         {
@@ -50,7 +51,7 @@ private:
     static serverConnections *instance;
 
 public:
-    void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName);
+    void creatServerConnection(QString serverName,QString driver,QString hostName,QString userName,QString passWord,QString dataBaseName, int port);
     bool connectToServer(QString serverName);
     void disconnectFromServer(QString serverName);
     QSqlDatabase getserverConnections(QString serverName);
