@@ -4,28 +4,25 @@
 
 class employeesModel
 {
-    QString employeeName;
-    QString preferedName;
     QString empId;
-    QString martialStatus;
+    QString employeeName;
     QString SSN;
-    QDate   dateBirth;
-    QString address;
     QString phoneNumber;
-    QString homeAddress;
-    QString email;
-    QString notes;
+    QString address;
     QTime   shiftBegTime;
     QTime   shiftEndTime;
+    QDate   dateBirth;
+    QString email;
     QString qualification;
     double  salary;
+    QString preferedName;
 
 public:
-    employeesModel(QString employeeName = "", QString preferedName = "", QString empId = "",
-                   QString martialStatus = "", QString SSN = NULL, QDate dateBirth= QDate(0,0,0),
-                   QString address = "", QString phoneNumber = "", QString homeAddress = "",
-                   QString email = "", QString notes = "", QTime shiftBegTime = QTime(0,0,0,0),
-                   QTime shiftEndTime = QTime(0,0,0,0), QString qualification = "", double salary = 0.0 );
+    employeesModel(QString empId = "" ,QString employeeName = "", QString SSN = "",
+                   QString phoneNumber = "", QString address = "", QTime shiftBegTime = QTime(0,0,0,0),
+                   QTime shiftEndTime = QTime(0,0,0,0), QDate dateBirth= QDate(0,0,0),
+                   QString email = "", QString qualification = "", double salary = 0.0,  QString preferedName = "" );
+
     QString getEmployeeName() const;
     void    setEmployeeName(const QString &value);
     QString getPreferedName() const;
@@ -34,20 +31,14 @@ public:
     void    setEmpId(QString value);
     QString getSSN() const;
     void    setSSN(const QString &value);
-    QString getMartialStatus() const;
-    void    setMartialStatus(const QString &value);
     QDate   getDateBirth() const;
     void    setDateBirth(const QDate &value);
     QString getAddress() const;
     void    setAddress(const QString &value);
     QString getPhoneNumber() const;
     void    setPhoneNumber(const QString &value);
-    QString getHomeAddress() const;
-    void    setHomeAddress(const QString &value);
     QString getEmail() const;
     void    setEmail(const QString &value);
-    QString getNotes() const;
-    void    setNotes(const QString &value);
     QTime   getShiftBegTime() const;
     void    setShiftBegTime(const QTime &value);
     QTime   getShiftEndTime() const;

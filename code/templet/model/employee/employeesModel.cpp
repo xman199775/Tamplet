@@ -1,22 +1,18 @@
 #include "employeesModel.h"
 
-employeesModel::employeesModel(QString employeeName, QString preferedName, QString empId,
-               QString martialStatus, QString SSN, QDate dateBirth,
-               QString address, QString phoneNumber, QString homeAddress,
-               QString email, QString notes, QTime shiftBegTime,
-               QTime shiftEndTime, QString qualification, double salary)
+employeesModel::employeesModel(QString empId, QString employeeName, QString SSN,
+                               QString phoneNumber, QString address,
+                               QTime shiftBegTime, QTime shiftEndTime, QDate dateBirth,
+                               QString email, QString qualification, double salary, QString preferedName)
 {
     this->employeeName  = employeeName  ;
     this->preferedName  = preferedName  ;
     this->empId         = empId         ;
-    this->martialStatus = martialStatus ;
     this->SSN           = SSN           ;
     this->dateBirth     = dateBirth     ;
     this->address       = address       ;
     this->phoneNumber   = phoneNumber   ;
-    this->homeAddress   = homeAddress   ;
     this->email         = email         ;
-    this->notes         = notes         ;
     this->shiftBegTime  = shiftBegTime  ;
     this->shiftEndTime  = shiftEndTime  ;
     this->qualification = qualification ;
@@ -53,16 +49,6 @@ void employeesModel::setEmpId(QString value)
     empId = value;
 }
 
-QString employeesModel::getMartialStatus() const
-{
-    return martialStatus;
-}
-
-void employeesModel::setMartialStatus(const QString &value)
-{
-    martialStatus = value;
-}
-
 QDate employeesModel::getDateBirth() const
 {
     return dateBirth;
@@ -93,16 +79,6 @@ void employeesModel::setPhoneNumber(const QString &value)
     phoneNumber = value;
 }
 
-QString employeesModel::getHomeAddress() const
-{
-    return homeAddress;
-}
-
-void employeesModel::setHomeAddress(const QString &value)
-{
-    homeAddress = value;
-}
-
 QString employeesModel::getEmail() const
 {
     return email;
@@ -111,16 +87,6 @@ QString employeesModel::getEmail() const
 void employeesModel::setEmail(const QString &value)
 {
     email = value;
-}
-
-QString employeesModel::getNotes() const
-{
-    return notes;
-}
-
-void employeesModel::setNotes(const QString &value)
-{
-    notes = value;
 }
 
 QTime employeesModel::getShiftBegTime() const

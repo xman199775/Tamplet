@@ -1,7 +1,7 @@
 #include "departementsModel.h"
 
 
-departementsModel::departementsModel(QString depName , int     depID )
+departementsModel::departementsModel(QString depName , int  depID )
 
 {
     this->depName = depName ;

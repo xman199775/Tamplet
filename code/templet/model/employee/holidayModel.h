@@ -9,16 +9,19 @@ class holidayModel
     QDate   backDate;
     QString leaveReasons;
     QString leaveNotes;
+    double  disc;
 
     public:
         holidayModel(QString empID = "", QDate leaveDate=QDate(0,0,0), QDate backDate=QDate(0,0,0),
-                     QString leaveReasons = "", QString leaveNotes = "" );
+                     double  disc = 0.0, QString leaveReasons = "", QString leaveNotes = "" );
         QString getEmpID() const;
         void    setEmpID(const QString &value);
         QDate   getLeaveDate() const;
         void    setLeaveDate(const QDate &value);
         QDate   getBackDate() const;
         void    setBackDate(const QDate &value);
+        double  getDisc();
+        void    setDisc(double &value);
         QString getLeaveReasons() const;
         void    setLeaveReasons(const QString &value);
         QString getLeaveNotes() const;

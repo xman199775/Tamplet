@@ -10,15 +10,15 @@ private:
     QDateTime dateOfModify;
     double    amount      ;
     QString   reason      ;
-    QString   note        ;
     bool      type        ; // true  for increasing , false for decreasing
+    double    newSalary   ;
 public:
     modifySalaryModel(QString employeeID = "", QString adminID = "", QDateTime dateOfModify=QDateTime(),
-                      double amount = 0.0, QString reason = "", QString note = "", bool type=false);
+                      double amount = 0.0, QString reason = "", double newSalary = 0.0, bool type=false);
     bool getType() const;
     void setType(bool value);
-    QString getNote() const;
-    void setNote(const QString &value);
+    double getNewSalary() const;
+    void setNewSalary(double &value);
     QString getReason() const;
     void setReason(const QString &value);
     double getAmount() const;
