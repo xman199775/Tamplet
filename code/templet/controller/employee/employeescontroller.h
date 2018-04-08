@@ -6,7 +6,7 @@
 class employeesController
 {
     public:
-    QMap <QString,QVariant> getAttributeNotDiffualt(employeesModel employee);
+    QMap <QString,QVariant> getAttributeNotDefault(employeesModel employee);
 
 
 };
