@@ -41,7 +41,7 @@ bool employeeRepository::updateEmployee(employeesModel employee)
     employeesController employeeController;
     QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDefault(employee);
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
-    QString query="UPDATE `tamplete`.`employee` SET ";
+    QString query="UPDATE `employee` SET ";
     for(QString feildName:Attribute.keys())
     {
         query+="`";
@@ -92,12 +92,12 @@ bool employeeRepository:: deleteModification(QString empId, QDateTime date)
 }
 bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
 {
-    modifysalarycontroller mod ;
-    QMap<QString,QVariant> attribute = mod.getAttributeNotDefault(modify);
+    modifysalarycontroller modifyController ;
+    QMap<QString,QVariant> attribute = modifyController.getAttributeNotDefault(modify);
 
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    QString query="UPDATE `tamplete`.`modifySalary` SET ";
+    QString query="UPDATE `modifySalary` SET ";
     for(QString feildName:attribute.keys())
     {
         query+="`";
@@ -115,6 +115,8 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
         updateQuery.bindValue(":"+feildName,attribute.value(feildName));
     }
     updateQuery.bindValue(":Empid",modify.getEmployeeID());
+    updateQuery.bindValue(":Date",modify.getDateOfModify());
+
     return updateQuery.exec();
 
 }
