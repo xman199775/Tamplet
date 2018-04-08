@@ -39,7 +39,7 @@ bool employeeRepository:: deleteEmployee(QString empId)
 bool employeeRepository::updateEmployee(employeesModel employee)
 {
     employeesController employeeController;
-    QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDiffualt(employee);
+    QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDefault(employee);
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
     QString query="UPDATE `tamplete`.`employee` SET ";
     for(QString feildName:Attribute.keys())
