@@ -1,8 +1,9 @@
 #ifndef EMPLOYEEREPOSITORY_H
 #define EMPLOYEEREPOSITORY_H
 #include <model/employee/employeesModel.h>
-#include <model/employee/modifySalaryModel.h>
 #include <controller/employee/employeescontroller.h>
+#include <model/employee/modifySalaryModel.h>
+#include <controller/employee/modifysalarycontroller.h>
 #include <system/serverconnections.h>
 
 class employeeRepository
@@ -14,6 +15,7 @@ public:
     bool updateEmployee(employeesModel employee);
     bool addModification(modifySalaryModel modify);
     bool deleteModification(QString empId, QDateTime date);
+    bool updateSalaryModification(modifySalaryModel modify);
 };
 
 #endif // EMPLOYEEREPOSITORY_H

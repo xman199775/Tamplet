@@ -11,5 +11,6 @@ INPUT(
 ./debug\holidayController.o
 ./debug\serverconnections.o
 ./debug\employeerepository.o
+./debug\modifysalarycontroller.o
 ./debug\qrc_qml.o
 );

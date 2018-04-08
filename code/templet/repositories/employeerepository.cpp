@@ -39,7 +39,7 @@ bool employeeRepository:: deleteEmployee(QString empId)
 bool employeeRepository::updateEmployee(employeesModel employee)
 {
     employeesController employeeController;
-    QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDiffualt(employee);
+    QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDefault(employee);
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
     QString query="UPDATE `tamplete`.`employee` SET ";
     for(QString feildName:Attribute.keys())
@@ -88,5 +88,33 @@ bool employeeRepository:: deleteModification(QString empId, QDateTime date)
     deleteQuery.bindValue(":Date", date);
 
     return deleteQuery.exec();
+
+}
+bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
+{
+    modifysalarycontroller mod ;
+    QMap<QString,QVariant> attribute = mod.getAttributeNotDefault(modify);
+
+    QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString query="UPDATE `tamplete`.`modifySalary` SET ";
+    for(QString feildName:attribute.keys())
+    {
+        query+="`";
+        query+=feildName;
+        query+="` = :";
+        query+=feildName;
+        query+=" ";
+    }
+
+    query+=" WHERE `Empid`= :Empid AND `Date` = :Date ; ";
+    updateQuery.prepare(query);
+
+    for(QString feildName:attribute.keys())
+    {
+        updateQuery.bindValue(":"+feildName,attribute.value(feildName));
+    }
+    updateQuery.bindValue(":Empid",modify.getEmployeeID());
+    return updateQuery.exec();
 
 }

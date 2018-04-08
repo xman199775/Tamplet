@@ -36,7 +36,8 @@ SOURCES += \
     controller/employee/employeescontroller.cpp \
     controller/employee/holidayController.cpp \
     system/serverconnections.cpp \
-    repositories/employeerepository.cpp
+    repositories/employeerepository.cpp \
+    controller/employee/modifysalarycontroller.cpp
 
 HEADERS += \
     model/employee/dailyLateReportModel.h \
@@ -49,7 +50,8 @@ HEADERS += \
     controller/employee/employeescontroller.h \
     controller/employee/holidayController.h \
     system/serverconnections.h \
-    repositories/employeerepository.h
+    repositories/employeerepository.h \
+    controller/employee/modifysalarycontroller.h
 
 RESOURCES += \
     qml.qrc
