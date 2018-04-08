@@ -1,5 +1,5 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
+//#include <QQmlApplicationEngine>
 #include <system/serverconnections.h>
 int main(int argc, char *argv[])
 {
@@ -7,9 +7,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     serverConnections::getInstance()->creatServerConnection("general","QMYSQL","127.0.0.1","root","root","tamplete");
     serverConnections::getInstance()->connectToServer("general");
-    QQmlApplicationEngine engine;
+    /*QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
-        return -1;
+        return -1;*/
     return app.exec();
 }

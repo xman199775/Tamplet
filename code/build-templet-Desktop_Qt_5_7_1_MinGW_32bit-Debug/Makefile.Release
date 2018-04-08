@@ -920,6 +920,8 @@ release/employeerepository.o: ../templet/repositories/employeerepository.cpp ../
 		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringlist.h \
 		../../../../Qt/5.7/mingw53_32/include/QtCore/qregexp.h \
 		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringmatcher.h \
+		../templet/model/employee/modifysalarymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDateTime \
 		../templet/system/serverconnections.h \
 		../../../../Qt/5.7/mingw53_32/include/QtSql/QtSql \
 		../../../../Qt/5.7/mingw53_32/include/QtSql/QtSqlDepends \
@@ -1121,7 +1123,8 @@ release/employeerepository.o: ../templet/repositories/employeerepository.cpp ../
 		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqltablemodel.h \
 		../../../../Qt/5.7/mingw53_32/include/QtSql/qtsqlversion.h \
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QMap \
-		../../../../Qt/5.7/mingw53_32/include/QtCore/QDebug
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../templet/model/employee/modifySalaryModel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\employeerepository.o ..\templet\repositories\employeerepository.cpp
 
 release/qrc_qml.o: release/qrc_qml.cpp 
