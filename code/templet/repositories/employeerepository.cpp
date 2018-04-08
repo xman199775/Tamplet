@@ -1,7 +1,4 @@
 #include "employeeRepository.h"
-#include <model\employee\employeesModel.h>
-#include <system\serverconnections.h>
-#include <model\employee\modifySalaryModel.h>
 
 employeeRepository::employeeRepository()
 {
@@ -39,7 +36,31 @@ bool employeeRepository:: deleteEmployee(QString empId)
 
     return deleteQuery.exec();
 }
+bool employeeRepository::updateEmployee(employeesModel employee)
+{
+    employeesController employeeController;
+    QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDiffualt(employee);
+    QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
+    QString query="UPDATE `tamplete`.`employee` SET ";
+    for(QString feildName:Attribute.keys())
+    {
+        query+="`";
+        query+=feildName;
+        query+="` = :";
+        query+=feildName;
+        query+=" ";
+    }
+    query+=" WHERE `Empid`= :Empid ; ";
+    updateQuery.prepare(query);
+    for(QString feildName:Attribute.keys())
+    {
+        updateQuery.bindValue(":"+feildName,Attribute.value(feildName));
+    }
+    updateQuery.bindValue(":Empid",employee.getEmpId());
+    return updateQuery.exec();
 
+
+}
 bool employeeRepository::addModification(modifySalaryModel modify)
 {
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
