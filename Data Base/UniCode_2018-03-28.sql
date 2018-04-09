@@ -236,11 +236,14 @@ CREATE TABLE `InvoiceItem` (
 
 CREATE TABLE `Late` (
   `Empid` varchar(20) NOT NULL DEFAULT '',
+  `Uid` varchar(20) NOT NULL,
   `Date` datetime NOT NULL,
   `Amount` int(11) NOT NULL,
   `Reason` varchar(120) DEFAULT '',
   PRIMARY KEY (`Empid`,`Date`),
-  CONSTRAINT `late_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `Employee` (`Empid`)
+  KEY `Uid` (`Uid`),
+  CONSTRAINT `late_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `unicode`.`Employee` (`Empid`),
+  CONSTRAINT `late_ibfk_2` FOREIGN KEY (`Uid`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

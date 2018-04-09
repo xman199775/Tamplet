@@ -1,7 +1,7 @@
 #include "dailyLateReportModel.h"
 
 dailyLateReportModel::dailyLateReportModel(QString employeeID , int employeeDepID , int lateTime ,
-                                           QDate dateOfLate , QString reasons)
+                                           QDateTime dateOfLate , QString reasons)
 {
     this->employeeID     = employeeID    ;
     this->employeeDepID  = employeeDepID ;
@@ -19,6 +19,15 @@ QString dailyLateReportModel::getEmployeeID() const
 void dailyLateReportModel::setEmployeeID(const QString &value)
 {
     employeeID = value;
+}
+QString dailyLateReportModel::getAdminID() const
+{
+    return adminID;
+}
+
+void dailyLateReportModel::setAdminID(const QString &value)
+{
+    adminID = value;
 }
 
 int dailyLateReportModel::getEmployeeDep() const
@@ -41,11 +50,11 @@ void dailyLateReportModel::setLateTime(int value)
     lateTime = value;
 }
 
-QDate dailyLateReportModel:: getDateOfLate() const
+QDateTime dailyLateReportModel:: getDateOfLate() const
 {
     return dateOfLate;
 }
-void  dailyLateReportModel ::setDateOfLate(const QDate &value)
+void  dailyLateReportModel ::setDateOfLate(const QDateTime &value)
 {
     dateOfLate=value;
 }

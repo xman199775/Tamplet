@@ -27,7 +27,7 @@ bool employeeRepository:: addEmployee(employeesModel employee)
 
     return InsertQuery.exec();
 }
-bool employeeRepository:: deleteEmployee(QString empId)
+bool employeeRepository::deleteEmployee(QString empId)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
     deleteQuery.prepare("DELETE FROM Employee WHERE Empid = :Empid ");
@@ -119,4 +119,81 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
 
     return updateQuery.exec();
 
+}
+EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId, QDateTime range0, QDateTime range1)
+{
+    EmployeeDetailedReport* report;
+    report = new EmployeeDetailedReport;
+
+    QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString sql;
+    sql = "SELECT * FROM `ModifySalary` WHERE `Empid` = :Empid AND (`Date` BETWEEN :Range0 AND :Range1); ";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    modifySalaryModel tmp;
+    tmp.setEmployeeID(empId);
+
+    while (get.next())
+    {
+        tmp.setAdminID     (get.value("Uid").toString());
+        tmp.setAmount      (get.value("Amount").toDouble());
+        tmp.setDateOfModify(get.value("Date").toDateTime());
+        tmp.setNewSalary   (get.value("NewSalary").toDouble());
+        tmp.setReason      (get.value("Reason").toString());
+        tmp.setType        (get.value("Type").toChar().toLatin1());
+
+        report->addSalaryModification(tmp);
+    }
+
+    sql = "SELECT * FROM `Vacation` WHERE `Empid` = :Empid AND (`SDate` BETWEEN :Range0 AND :Range1);";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    holidayModel holi;
+    holi.setEmpID(empId);
+
+    while (get.next())
+    {
+        holi.setAdminID     (get.value("Uid").toString());
+        holi.setBackDate    (get.value("EDate").toDate());
+        holi.setLeaveDate   (get.value("SDate").toDate());
+        holi.setDisc        (get.value("Disc").toDouble());
+        holi.setLeaveNotes  (get.value("Notes").toString());
+        holi.setLeaveReasons(get.value("Reason").toString());
+
+        report->addHoliday(holi);
+    }
+
+    sql = "SELECT * FROM `Late` WHERE `Empid` = :Empid AND (`Sate` BETWEEN :Range0 AND :Range1);";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    dailyLateReportModel late;
+    late.setEmployeeID(empId);
+
+    while (get.next())
+    {
+        late.setAdminID(get.value("Uid").toString());
+        late.setDateOfLate(get.value("Date").toDateTime());
+        late.setLateTime(get.value("Amount").toInt());
+        late.setReasons(get.value("Reason").toString());
+
+        report->addLateReport(late);
+    }
+
+    return report;
 }

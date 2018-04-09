@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -g -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../templet -I. -I../../../Qt/5.7/clang_64/lib/QtCharts.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtQuick.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtGui.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtQml.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtNetwork.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I../../../Qt/5.7/clang_64/mkspecs/macx-clang -F/Users/Mohamed/Qt/5.7/clang_64/lib
+INCPATH       = -I../templet -I. -I../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtGui.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers -I../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I../../../Qt/5.7/clang_64/mkspecs/macx-clang -F/Users/Mohamed/Qt/5.7/clang_64/lib
 QMAKE         = /Users/Mohamed/Qt/5.7/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = templet1.0.0
 DISTDIR = /Users/Mohamed/Tamplet/code/build-templet-Desktop-Debug/.tmp/templet1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -Wl,-rpath,/Users/Mohamed/Qt/5.7/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/Mohamed/Qt/5.7/clang_64/lib -framework QtCharts -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtQuick -framework QtQml -framework QtNetwork -framework QtSql -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/Mohamed/Qt/5.7/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -59,7 +59,8 @@ SOURCES       = ../templet/system/main.cpp \
 		../templet/controller/employee/employeescontroller.cpp \
 		../templet/controller/employee/holidayController.cpp \
 		../templet/system/serverconnections.cpp \
-		../templet/repositories/employeerepository.cpp qrc_qml.cpp
+		../templet/repositories/employeerepository.cpp \
+		../templet/controller/employee/modifysalarycontroller.cpp qrc_qml.cpp
 OBJECTS       = main.o \
 		dailyLateReportModel.o \
 		departementsModel.o \
@@ -72,6 +73,7 @@ OBJECTS       = main.o \
 		holidayController.o \
 		serverconnections.o \
 		employeerepository.o \
+		modifysalarycontroller.o \
 		qrc_qml.o
 DIST          = ../../../Qt/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/clang_64/mkspecs/qdevice.pri \
@@ -243,7 +245,8 @@ DIST          = ../../../Qt/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../templet/controller/employee/employeescontroller.h \
 		../templet/controller/employee/holidayController.h \
 		../templet/system/serverconnections.h \
-		../templet/repositories/employeerepository.h ../templet/system/main.cpp \
+		../templet/repositories/employeerepository.h \
+		../templet/controller/employee/modifysalarycontroller.h ../templet/system/main.cpp \
 		../templet/model/employee/dailyLateReportModel.cpp \
 		../templet/model/employee/departementsModel.cpp \
 		../templet/model/employee/employeesModel.cpp \
@@ -254,7 +257,8 @@ DIST          = ../../../Qt/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../templet/controller/employee/employeescontroller.cpp \
 		../templet/controller/employee/holidayController.cpp \
 		../templet/system/serverconnections.cpp \
-		../templet/repositories/employeerepository.cpp
+		../templet/repositories/employeerepository.cpp \
+		../templet/controller/employee/modifysalarycontroller.cpp
 QMAKE_TARGET  = templet
 DESTDIR       = 
 TARGET        = templet.app/Contents/MacOS/templet
@@ -429,13 +433,9 @@ Makefile: ../templet/templet.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 		../../../Qt/5.7/clang_64/mkspecs/features/lex.prf \
 		../templet/templet.pro \
 		../templet/qml.qrc \
-		../../../Qt/5.7/clang_64/lib/QtCharts.framework/QtCharts.prl \
 		../../../Qt/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
-		../../../Qt/5.7/clang_64/lib/QtQuick.framework/QtQuick.prl \
 		../../../Qt/5.7/clang_64/lib/QtGui.framework/QtGui.prl \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/QtSql.prl \
-		../../../Qt/5.7/clang_64/lib/QtQml.framework/QtQml.prl \
-		../../../Qt/5.7/clang_64/lib/QtNetwork.framework/QtNetwork.prl \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug -o Makefile ../templet/templet.pro
 ../../../Qt/5.7/clang_64/mkspecs/features/spec_pre.prf:
@@ -600,13 +600,9 @@ Makefile: ../templet/templet.pro ../../../Qt/5.7/clang_64/mkspecs/macx-clang/qma
 ../../../Qt/5.7/clang_64/mkspecs/features/lex.prf:
 ../templet/templet.pro:
 ../templet/qml.qrc:
-../../../Qt/5.7/clang_64/lib/QtCharts.framework/QtCharts.prl:
 ../../../Qt/5.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
-../../../Qt/5.7/clang_64/lib/QtQuick.framework/QtQuick.prl:
 ../../../Qt/5.7/clang_64/lib/QtGui.framework/QtGui.prl:
 ../../../Qt/5.7/clang_64/lib/QtSql.framework/QtSql.prl:
-../../../Qt/5.7/clang_64/lib/QtQml.framework/QtQml.prl:
-../../../Qt/5.7/clang_64/lib/QtNetwork.framework/QtNetwork.prl:
 ../../../Qt/5.7/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug -o Makefile ../templet/templet.pro
@@ -638,8 +634,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../templet/qml.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../templet/model/employee/dailyLateReportModel.h ../templet/model/employee/departementsModel.h ../templet/model/employee/employeesModel.h ../templet/model/employee/holidayModel.h ../templet/model/employee/modifysalarymodel.h ../templet/controller/employee/dailyLateReportController.h ../templet/controller/employee/departementsController.h ../templet/controller/employee/employeescontroller.h ../templet/controller/employee/holidayController.h ../templet/system/serverconnections.h ../templet/repositories/employeerepository.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../templet/system/main.cpp ../templet/model/employee/dailyLateReportModel.cpp ../templet/model/employee/departementsModel.cpp ../templet/model/employee/employeesModel.cpp ../templet/model/employee/holidayModel.cpp ../templet/model/employee/modifysalarymodel.cpp ../templet/controller/employee/dailyLateReportController.cpp ../templet/controller/employee/departementsController.cpp ../templet/controller/employee/employeescontroller.cpp ../templet/controller/employee/holidayController.cpp ../templet/system/serverconnections.cpp ../templet/repositories/employeerepository.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../templet/model/employee/dailyLateReportModel.h ../templet/model/employee/departementsModel.h ../templet/model/employee/employeesModel.h ../templet/model/employee/holidayModel.h ../templet/model/employee/modifysalarymodel.h ../templet/controller/employee/dailyLateReportController.h ../templet/controller/employee/departementsController.h ../templet/controller/employee/employeescontroller.h ../templet/controller/employee/holidayController.h ../templet/system/serverconnections.h ../templet/repositories/employeerepository.h ../templet/controller/employee/modifysalarycontroller.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../templet/system/main.cpp ../templet/model/employee/dailyLateReportModel.cpp ../templet/model/employee/departementsModel.cpp ../templet/model/employee/employeesModel.cpp ../templet/model/employee/holidayModel.cpp ../templet/model/employee/modifysalarymodel.cpp ../templet/controller/employee/dailyLateReportController.cpp ../templet/controller/employee/departementsController.cpp ../templet/controller/employee/employeescontroller.cpp ../templet/controller/employee/holidayController.cpp ../templet/system/serverconnections.cpp ../templet/repositories/employeerepository.cpp ../templet/controller/employee/modifysalarycontroller.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -691,8 +687,6 @@ compiler_clean: compiler_rcc_clean
 
 main.o: ../templet/system/main.cpp ../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../Qt/5.7/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
-		../../../Qt/5.7/clang_64/lib/QtQml.framework/Headers/QQmlApplicationEngine \
-		../../../Qt/5.7/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
 		../templet/system/serverconnections.h \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/QtSql \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsql.h \
@@ -747,7 +741,14 @@ dailyLateReportController.o: ../templet/controller/employee/dailyLateReportContr
 departementsController.o: ../templet/controller/employee/departementsController.cpp ../templet/controller/employee/departementsController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o departementsController.o ../templet/controller/employee/departementsController.cpp
 
-employeescontroller.o: ../templet/controller/employee/employeescontroller.cpp ../templet/controller/employee/employeesController.h
+employeescontroller.o: ../templet/controller/employee/employeescontroller.cpp ../templet/controller/employee/employeesController.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QVariant \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		../templet/model/employee/employeesModel.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDate \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o employeescontroller.o ../templet/controller/employee/employeescontroller.cpp
 
 holidayController.o: ../templet/controller/employee/holidayController.cpp ../templet/controller/employee/holidayController.h
@@ -780,6 +781,15 @@ employeerepository.o: ../templet/repositories/employeerepository.cpp ../templet/
 		../templet/model/employee/employeesModel.h \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDate \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		../templet/controller/employee/employeescontroller.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QVariant \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		../templet/model/employee/modifySalaryModel.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../templet/controller/employee/modifysalarycontroller.h \
+		../templet/model/employee/modifysalarymodel.h \
 		../templet/system/serverconnections.h \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/QtSql \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsql.h \
@@ -797,11 +807,19 @@ employeerepository.o: ../templet/repositories/employeerepository.cpp ../templet/
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
 		../../../Qt/5.7/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
-		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
-		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o employeerepository.o ../templet/repositories/employeerepository.cpp
+
+modifysalarycontroller.o: ../templet/controller/employee/modifysalarycontroller.cpp ../templet/controller/employee/modifysalarycontroller.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QVariant \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		../templet/model/employee/modifysalarymodel.h \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/QDateTime \
+		../../../Qt/5.7/clang_64/lib/QtCore.framework/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modifysalarycontroller.o ../templet/controller/employee/modifysalarycontroller.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp

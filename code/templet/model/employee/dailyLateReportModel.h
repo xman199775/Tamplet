@@ -4,23 +4,26 @@
 class dailyLateReportModel
 {
     QString employeeID;
+    QString adminID;
     int employeeDepID;
     int lateTime;
-    QDate dateOfLate;
+    QDateTime dateOfLate;
     QString reasons;
 
 public:
 
     dailyLateReportModel(QString employeeID = "",int employeeDepID = 0, int lateTime = 0,
-                         QDate dateOfLate = QDate(0,0,0), QString reasons = "" );
+                         QDateTime dateOfLate = QDateTime(), QString reasons = "" );
     QString getEmployeeID() const;
     void    setEmployeeID(const QString &value);
+    QString getAdminID() const;
+    void    setAdminID(const QString &value);
     int     getEmployeeDep() const;
     void    setEmployeeDep(const int &value);
     int     getLateTime() const;
     void    setLateTime(int value);
-    QDate   getDateOfLate() const;
-    void    setDateOfLate(const QDate &value);
+    QDateTime   getDateOfLate() const;
+    void    setDateOfLate(const QDateTime &value);
     QString getReasons() const;
     void    setReasons(const QString &value);
 

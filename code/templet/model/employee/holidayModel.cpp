@@ -20,6 +20,15 @@ void holidayModel::setEmpID(const QString &value)
 {
     empID = value;
 }
+QString holidayModel::getAdminID() const
+{
+    return adminID;
+}
+
+void holidayModel::setAdminID(const QString &value)
+{
+    adminID = value;
+}
 
 QDate holidayModel::getLeaveDate() const
 {
@@ -45,7 +54,7 @@ double holidayModel::getDisc()
 {
     return disc;
 }
-void holidayModel ::setDisc(double &value)
+void holidayModel ::setDisc(double value)
 {
     disc = value;
 }
