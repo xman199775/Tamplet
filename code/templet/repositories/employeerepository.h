@@ -7,6 +7,7 @@
 #include <system/serverconnections.h>
 #include <QVector>
 #include <model/employee/employeedetailedreport.h>
+#include <model/employee/employeesgeneralreport.h>
 class employeeRepository
 {
 public:
@@ -18,6 +19,7 @@ public:
     bool deleteModification(QString empId, QDateTime date);
     bool updateSalaryModification(modifySalaryModel modify);
     EmployeeDetailedReport* generateDetailedReport(QString empId, QDateTime range0, QDateTime range1);
+    EmployeesGeneralReport* generateGeneralReport(QDate range0, QDate range1);
 };
 
 #endif // EMPLOYEEREPOSITORY_H

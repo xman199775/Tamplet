@@ -187,12 +187,56 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
 
     while (get.next())
     {
-        late.setAdminID(get.value("Uid").toString());
+        late.setAdminID   (get.value("Uid").toString());
         late.setDateOfLate(get.value("Date").toDateTime());
-        late.setLateTime(get.value("Amount").toInt());
-        late.setReasons(get.value("Reason").toString());
+        late.setLateTime  (get.value("Amount").toInt());
+        late.setReasons   (get.value("Reason").toString());
 
         report->addLateReport(late);
+    }
+
+    return report;
+}
+
+EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, QDate range1)
+{
+    EmployeesGeneralReport* report;
+    report = new EmployeesGeneralReport;
+
+    QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString sql, disc, bonus, lend, lates, holidays, disHoliday;
+    disc       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'd'";
+    bonus      = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'z'";
+    lend       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 's'";
+    lates      = "SELECT SUM(`Amount`) FROM `Lates`        WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :range0 AND :range1)";
+    holidays   = "SELECT COUNT(*)      FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+    disHoliday = "SELECT SUM(`Disc`)   FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+
+    sql        = "SELECT e.`EmpId`, e.`Name`, d.`DepName` , e.`ClearSalary`, ("+ disc +") as dis,"
+                 " ("+ bonus +") as bonus, ("+ lend +") as lend, ("+ lates +") as lend,"
+                 " ("+ holidays +") as holi, ("+ disHoliday +") as disHoli FROM `Employee` as e, `DepartEmp` as d"
+                 " WHERE e.`EmpId` = d.`EmpId` ";
+    get.prepare(sql);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    EmployeesGeneralReport::SingleReport sreport;
+
+    while (get.next())
+    {
+        sreport.empId                 = get.value(0).toString();
+        sreport.empName               = get.value(1).toString();
+        sreport.DepName               = get.value(2).toString();
+        sreport.ClearSalary           = get.value(3).toDouble();
+        sreport.TotalBonus            = get.value(4).toDouble();
+        sreport.TotalLend             = get.value(5).toDouble();
+        sreport.TotalDaysLate         = get.value(6).toInt();
+        sreport.TotalHolidayDays      = get.value(7).toInt();
+        sreport.TotalHolidaysDiscount = get.value(8).toDouble();
+
+        report->addSingleReport(sreport);
     }
 
     return report;
