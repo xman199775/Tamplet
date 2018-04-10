@@ -4,11 +4,6 @@ QMap <QString,QVariant> employeesController:: getAttributeNotDefault(employeesMo
 {
     QMap<QString,QVariant> Attribute;
 
-    if(employee.getEmpId()!="")
-    {
-        Attribute.insert("Empid",employee.getEmpId());
-    }
-
     if(employee.getEmployeeName()!="")
     {
         Attribute.insert("Name",employee.getEmployeeName());

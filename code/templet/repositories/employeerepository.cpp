@@ -27,7 +27,7 @@ bool employeeRepository:: addEmployee(employeesModel employee)
 
     return InsertQuery.exec();
 }
-bool employeeRepository:: deleteEmployee(QString empId)
+bool employeeRepository::deleteEmployee(QString empId)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
     deleteQuery.prepare("DELETE FROM `Employee` WHERE `Empid` = :Empid ");
@@ -92,8 +92,8 @@ bool employeeRepository:: deleteModification(QString empId, QDateTime date)
 }
 bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
 {
-    modifysalarycontroller mod ;
-    QMap<QString,QVariant> attribute = mod.getAttributeNotDefault(modify);
+    modifysalarycontroller modifyController ;
+    QMap<QString,QVariant> attribute = modifyController.getAttributeNotDefault(modify);
 
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
 
@@ -115,9 +115,12 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
         updateQuery.bindValue(":"+feildName,attribute.value(feildName));
     }
     updateQuery.bindValue(":Empid",modify.getEmployeeID());
+    updateQuery.bindValue(":Date",modify.getDateOfModify());
+
     return updateQuery.exec();
 
 }
+<<<<<<< HEAD
 
 bool employeeRepository::addHoliday(holidayModel holiday)
 {
@@ -173,4 +176,126 @@ bool deleteHoliday(QString empId, QDate date)
     return deleteQuery.exec();
 
 
+=======
+EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId, QDateTime range0, QDateTime range1)
+{
+    EmployeeDetailedReport* report;
+    report = new EmployeeDetailedReport;
+
+    QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString sql;
+    sql = "SELECT * FROM `ModifySalary` WHERE `Empid` = :Empid AND (`Date` BETWEEN :Range0 AND :Range1); ";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    modifySalaryModel tmp;
+    tmp.setEmployeeID(empId);
+
+    while (get.next())
+    {
+        tmp.setAdminID     (get.value("Uid").toString());
+        tmp.setAmount      (get.value("Amount").toDouble());
+        tmp.setDateOfModify(get.value("Date").toDateTime());
+        tmp.setNewSalary   (get.value("NewSalary").toDouble());
+        tmp.setReason      (get.value("Reason").toString());
+        tmp.setType        (get.value("Type").toChar().toLatin1());
+
+        report->addSalaryModification(tmp);
+    }
+
+    sql = "SELECT * FROM `Vacation` WHERE `Empid` = :Empid AND (`SDate` BETWEEN :Range0 AND :Range1);";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    holidayModel holi;
+    holi.setEmpID(empId);
+
+    while (get.next())
+    {
+        holi.setAdminID     (get.value("Uid").toString());
+        holi.setBackDate    (get.value("EDate").toDate());
+        holi.setLeaveDate   (get.value("SDate").toDate());
+        holi.setDisc        (get.value("Disc").toDouble());
+        holi.setLeaveNotes  (get.value("Notes").toString());
+        holi.setLeaveReasons(get.value("Reason").toString());
+
+        report->addHoliday(holi);
+    }
+
+    sql = "SELECT * FROM `Late` WHERE `Empid` = :Empid AND (`Sate` BETWEEN :Range0 AND :Range1);";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    dailyLateReportModel late;
+    late.setEmployeeID(empId);
+
+    while (get.next())
+    {
+        late.setAdminID   (get.value("Uid").toString());
+        late.setDateOfLate(get.value("Date").toDateTime());
+        late.setLateTime  (get.value("Amount").toInt());
+        late.setReasons   (get.value("Reason").toString());
+
+        report->addLateReport(late);
+    }
+
+    return report;
+}
+
+EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, QDate range1)
+{
+    EmployeesGeneralReport* report;
+    report = new EmployeesGeneralReport;
+
+    QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString sql, disc, bonus, lend, lates, holidays, disHoliday;
+    disc       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'd'";
+    bonus      = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'z'";
+    lend       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 's'";
+    lates      = "SELECT SUM(`Amount`) FROM `Lates`        WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :range0 AND :range1)";
+    holidays   = "SELECT COUNT(*)      FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+    disHoliday = "SELECT SUM(`Disc`)   FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+
+    sql        = "SELECT e.`EmpId`, e.`Name`, d.`DepName` , e.`ClearSalary`, ("+ disc +") as dis,"
+                 " ("+ bonus +") as bonus, ("+ lend +") as lend, ("+ lates +") as lend,"
+                 " ("+ holidays +") as holi, ("+ disHoliday +") as disHoli FROM `Employee` as e, `DepartEmp` as d"
+                 " WHERE e.`EmpId` = d.`EmpId` ";
+    get.prepare(sql);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    EmployeesGeneralReport::SingleReport sreport;
+
+    while (get.next())
+    {
+        sreport.empId                 = get.value(0).toString();
+        sreport.empName               = get.value(1).toString();
+        sreport.DepName               = get.value(2).toString();
+        sreport.ClearSalary           = get.value(3).toDouble();
+        sreport.TotalBonus            = get.value(4).toDouble();
+        sreport.TotalLend             = get.value(5).toDouble();
+        sreport.TotalDaysLate         = get.value(6).toInt();
+        sreport.TotalHolidayDays      = get.value(7).toInt();
+        sreport.TotalHolidaysDiscount = get.value(8).toDouble();
+
+        report->addSingleReport(sreport);
+    }
+
+    return report;
+>>>>>>> c520bcc496df2e06d5af6c5abbb736e4842053ad
 }

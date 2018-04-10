@@ -5,6 +5,7 @@
 class holidayModel
 {
     QString empID;
+    QString adminID;
     QDate   leaveDate;
     QDate   backDate;
     QString leaveReasons;
@@ -17,18 +18,24 @@ class holidayModel
                      double  disc = 0.0, QString leaveReasons = "", QString leaveNotes = "" );
         QString getEmpID() const;
         void    setEmpID(const QString &value);
+        QString getAdminID() const;
+        void    setAdminID(const QString &value);
         QDate   getLeaveDate() const;
         void    setLeaveDate(const QDate &value);
         QDate   getBackDate() const;
         void    setBackDate(const QDate &value);
         double  getDisc();
-        void    setDisc(double &value);
+        void    setDisc(double value);
         QString getLeaveReasons() const;
         void    setLeaveReasons(const QString &value);
         QString getLeaveNotes() const;
         void    setLeaveNotes(const QString &value);
+<<<<<<< HEAD
         QString getAdminId() const;
         void setAdminId(const QString &value);
+=======
+
+>>>>>>> c520bcc496df2e06d5af6c5abbb736e4842053ad
 };
 
 #endif // HOLIDAYMODEL_H

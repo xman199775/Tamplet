@@ -5,18 +5,9 @@ QMap <QString,QVariant> modifysalarycontroller :: getAttributeNotDefault(modifyS
 {
     QMap<QString,QVariant> Attribute;
 
-    if( modify.getEmployeeID() != "" )
-    {
-        Attribute.insert("Empid", modify.getEmployeeID());
-    }
-
     if( modify.getAdminID() != "" )
     {
         Attribute.insert("Uid", modify.getAdminID());
-    }
-    if( modify.getDateOfModify() !=QDateTime()  )//write the dafault constr. for QDateTime
-    {
-        Attribute.insert("Date", modify.getDateOfModify());
     }
     if( modify.getAmount() != 0.0 )
     {
