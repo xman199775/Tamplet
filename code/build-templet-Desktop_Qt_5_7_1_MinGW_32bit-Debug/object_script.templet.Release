@@ -12,5 +12,7 @@ INPUT(
 ./release\serverconnections.o
 ./release\employeerepository.o
 ./release\modifysalarycontroller.o
+./release\employeedetailedreport.o
+./release\employeesgeneralreport.o
 ./release\qrc_qml.o
 );

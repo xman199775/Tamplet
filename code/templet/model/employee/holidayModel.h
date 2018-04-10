@@ -30,12 +30,9 @@ class holidayModel
         void    setLeaveReasons(const QString &value);
         QString getLeaveNotes() const;
         void    setLeaveNotes(const QString &value);
-<<<<<<< HEAD
         QString getAdminId() const;
         void setAdminId(const QString &value);
-=======
 
->>>>>>> c520bcc496df2e06d5af6c5abbb736e4842053ad
 };
 
 #endif // HOLIDAYMODEL_H

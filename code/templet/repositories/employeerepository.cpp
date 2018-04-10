@@ -120,7 +120,6 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
     return updateQuery.exec();
 
 }
-<<<<<<< HEAD
 
 bool employeeRepository::addHoliday(holidayModel holiday)
 {
@@ -175,8 +174,7 @@ bool deleteHoliday(QString empId, QDate date)
 
     return deleteQuery.exec();
 
-
-=======
+}
 EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId, QDateTime range0, QDateTime range1)
 {
     EmployeeDetailedReport* report;
@@ -297,5 +295,4 @@ EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, 
     }
 
     return report;
->>>>>>> c520bcc496df2e06d5af6c5abbb736e4842053ad
 }

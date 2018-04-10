@@ -20,14 +20,11 @@ public:
     bool addModification(modifySalaryModel modify);
     bool deleteModification(QString empId, QDateTime date);
     bool updateSalaryModification(modifySalaryModel modify);
-<<<<<<< HEAD
     bool addHoliday(holidayModel holiday);
     bool updateHoliday(holidayModel holidayM);
     bool deleteHoliday(QString empId, QDate date);
-=======
     EmployeeDetailedReport* generateDetailedReport(QString empId, QDateTime range0, QDateTime range1);
     EmployeesGeneralReport* generateGeneralReport(QDate range0, QDate range1);
->>>>>>> c520bcc496df2e06d5af6c5abbb736e4842053ad
 };
 
 #endif // EMPLOYEEREPOSITORY_H

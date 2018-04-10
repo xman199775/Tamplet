@@ -12,5 +12,7 @@ INPUT(
 ./debug\serverconnections.o
 ./debug\employeerepository.o
 ./debug\modifysalarycontroller.o
+./debug\employeedetailedreport.o
+./debug\employeesgeneralreport.o
 ./debug\qrc_qml.o
 );
