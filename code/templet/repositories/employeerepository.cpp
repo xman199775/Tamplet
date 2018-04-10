@@ -9,7 +9,7 @@ bool employeeRepository:: addEmployee(employeesModel employee)
 
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    InsertQuery.prepare("INSERT INTO Employee ( Empid,  Name,  SSN,  NickName,  BirthDate,  Address,  PhoneNum, Email,  ShiftBeg,  ShiftEnd,  ClearSalary,  Certti)"
+    InsertQuery.prepare("INSERT INTO `Employee` ( `Empid`, `Name`, `SSN`, `NickName`, `BirthDate`, `Address`, `PhoneNum`, `Email`, `ShiftBeg`, `ShiftEnd`, `ClearSalary`, `Certti`)"
                                       "VALUES (:Empid, :Name, :SSN, :NickName, :BirthDate, :Address, :PhoneNum, :Email, :ShiftBeg, :ShiftEnd, :ClearSalary, :Certti)");
 
     InsertQuery.bindValue(":Empid", employee.getEmpId());
@@ -30,7 +30,7 @@ bool employeeRepository:: addEmployee(employeesModel employee)
 bool employeeRepository:: deleteEmployee(QString empId)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
-    deleteQuery.prepare("DELETE FROM Employee WHERE Empid = :Empid ");
+    deleteQuery.prepare("DELETE FROM `Employee` WHERE `Empid` = :Empid ");
 
     deleteQuery.bindValue(":Empid", empId);
 
@@ -41,7 +41,7 @@ bool employeeRepository::updateEmployee(employeesModel employee)
     employeesController employeeController;
     QMap<QString,QVariant> Attribute=employeeController.getAttributeNotDefault(employee);
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
-    QString query="UPDATE `tamplete`.`employee` SET ";
+    QString query="UPDATE `employee` SET ";
     for(QString feildName:Attribute.keys())
     {
         query+="`";
@@ -65,7 +65,7 @@ bool employeeRepository::addModification(modifySalaryModel modify)
 {
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    InsertQuery.prepare("INSERT INTO ModifySalary (Empid, Uid, Date, type, amount, Reasons, NewSalary) "
+    InsertQuery.prepare("INSERT INTO `ModifySalary` (`Empid`, `Uid`, `Date`, `type`, `amount`, `Reasons`, `NewSalary`) "
                         "Values (:Empid, :Uid, :Date, :type, :amount, :Reasons, :NewSalary)" );
 
     InsertQuery.bindValue(":Empid",modify.getEmployeeID() );
@@ -82,7 +82,7 @@ bool employeeRepository:: deleteModification(QString empId, QDateTime date)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    deleteQuery.prepare("DELETE FROM ModifySalary WHERE Empid = :Empid AND Date = :Date ");
+    deleteQuery.prepare("DELETE FROM `ModifySalary` WHERE `Empid` = :Empid AND `Date` = :Date ");
 
     deleteQuery.bindValue(":Empid", empId);
     deleteQuery.bindValue(":Date", date);
@@ -97,7 +97,7 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
 
     QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    QString query="UPDATE `tamplete`.`modifySalary` SET ";
+    QString query="UPDATE `modifySalary` SET ";
     for(QString feildName:attribute.keys())
     {
         query+="`";
@@ -116,5 +116,61 @@ bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
     }
     updateQuery.bindValue(":Empid",modify.getEmployeeID());
     return updateQuery.exec();
+
+}
+
+bool employeeRepository::addHoliday(holidayModel holiday)
+{
+    QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    InsertQuery.prepare("INSERT INTO `Vacation` (`Empid` ,`Uid` ,`SDate` ,`EDate` ,`Reason` ,`Notes` ,`Disc` )"
+                        "VALUES (:Empid, :Uid, :SDate, :EDate, :Reason, :Notes, :Disc) " );
+
+    InsertQuery.bindValue(":Empid", holiday.getEmpID())         ;
+    InsertQuery.bindValue(":Uid", holiday.getAdminId())         ;
+    InsertQuery.bindValue(":SDate", holiday.getLeaveDate())     ;
+    InsertQuery.bindValue(":EDate", holiday.getBackDate())      ;
+    InsertQuery.bindValue(":Reason", holiday.getLeaveReasons()) ;
+    InsertQuery.bindValue(":Notes", holiday.getLeaveNotes())    ;
+    InsertQuery.bindValue(":Disc", holiday.getDisc())           ;
+
+    return InsertQuery.exec();
+}
+bool employeeRepository::updateHoliday(holidayModel holidayM)
+{
+    holidayController holiday;
+    QMap<QString,QVariant> attribute=holiday.getAttributeNotDefault(holidayM);
+    QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
+    QString query="UPDATE `Vacation` SET ";
+    for(QString feildName:attribute.keys())
+    {
+        query+="`";
+        query+=feildName;
+        query+="` = :";
+        query+=feildName;
+        query+=" ";
+    }
+    query+=" WHERE `Empid`= :Empid AND `SDate` = :SDate ; ";
+    updateQuery.prepare(query);
+    for(QString feildName:attribute.keys())
+    {
+        updateQuery.bindValue(":"+feildName,attribute.value(feildName));
+    }
+    updateQuery.bindValue(":Empid",holidayM.getEmpID());
+    return updateQuery.exec();
+
+}
+
+bool deleteHoliday(QString empId, QDate date)
+{
+    QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    deleteQuery.prepare("DELETE FROM `Vacation` WHERE `Empid` = :Empid AND `SDate` = :SDate ");
+
+    deleteQuery.bindValue(":Empid", empId);
+    deleteQuery.bindValue(":SDate", date);
+
+    return deleteQuery.exec();
+
 
 }

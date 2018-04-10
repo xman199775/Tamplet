@@ -1,14 +1,26 @@
 #include "holidayModel.h"
 
-holidayModel::holidayModel(QString empID, QDate leaveDate, QDate backDate, double disc,
+holidayModel::holidayModel(QString empID, QString adminId, QDate leaveDate, QDate backDate, double disc,
                            QString leaveReasons, QString leaveNotes)
 {
     this->empID        = empID        ;
+    this->adminId      = adminId      ;
     this->leaveDate    = leaveDate    ;
     this->backDate     = backDate     ;
     this->leaveReasons = leaveReasons ;
     this->leaveNotes   = leaveNotes   ;
     this->disc         = disc         ;
+
+}
+
+QString holidayModel::getAdminId() const
+{
+    return adminId;
+}
+
+void holidayModel::setAdminId(const QString &value)
+{
+    adminId = value;
 }
 
 QString holidayModel::getEmpID() const
