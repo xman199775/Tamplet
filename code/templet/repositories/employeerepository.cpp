@@ -61,6 +61,7 @@ bool employeeRepository::updateEmployee(employeesModel employee)
 
 
 }
+
 bool employeeRepository::addModification(modifySalaryModel modify)
 {
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
@@ -162,8 +163,7 @@ bool employeeRepository::updateHoliday(holidayModel holidayM)
     return updateQuery.exec();
 
 }
-
-bool deleteHoliday(QString empId, QDate date)
+bool employeeRepository::deleteHoliday(QString empId, QDate date)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
 
@@ -175,11 +175,12 @@ bool deleteHoliday(QString empId, QDate date)
     return deleteQuery.exec();
 
 }
+
 EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId, QDateTime range0, QDateTime range1)
 {
     EmployeeDetailedReport* report;
     report = new EmployeeDetailedReport;
-
+    //get Modfiy salary in the range
     QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
 
     QString sql;
@@ -199,13 +200,13 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
         tmp.setAdminID     (get.value("Uid").toString());
         tmp.setAmount      (get.value("Amount").toDouble());
         tmp.setDateOfModify(get.value("Date").toDateTime());
-        tmp.setNewSalary   (get.value("NewSalary").toDouble());
         tmp.setReason      (get.value("Reason").toString());
         tmp.setType        (get.value("Type").toChar().toLatin1());
 
         report->addSalaryModification(tmp);
     }
 
+    //get holiday in the range
     sql = "SELECT * FROM `Vacation` WHERE `Empid` = :Empid AND (`SDate` BETWEEN :Range0 AND :Range1);";
 
     get.prepare(sql);
@@ -228,7 +229,7 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
 
         report->addHoliday(holi);
     }
-
+    //get late in the range
     sql = "SELECT * FROM `Late` WHERE `Empid` = :Empid AND (`Sate` BETWEEN :Range0 AND :Range1);";
 
     get.prepare(sql);
