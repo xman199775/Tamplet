@@ -8,6 +8,7 @@
 class modifysalarycontroller
 {
 public:
+    QString validateModel(modifySalaryModel modifysalarymodel);
     QMap <QString,QVariant> getAttributeNotDefault(modifySalaryModel modify);
 
 

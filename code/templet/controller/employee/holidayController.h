@@ -7,7 +7,7 @@
 class holidayController
 {
     public:
-
+    QString validateModel(holidayModel holidaymodel);
     QMap <QString,QVariant> getAttributeNotDefault(holidayModel holiday);
 
 };

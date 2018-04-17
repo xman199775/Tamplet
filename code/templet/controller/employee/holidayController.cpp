@@ -1,5 +1,10 @@
 #include "holidayController.h"
 
+QString holidayController:: validateModel(holidayModel holidaymodel)
+{
+
+}
+
 QMap <QString,QVariant> holidayController::getAttributeNotDefault(holidayModel holiday)
 {
     QMap <QString,QVariant> attribute;

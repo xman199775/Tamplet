@@ -6,6 +6,7 @@
 class employeesController
 {
     public:
+    QString validateModel(employeesModel employeesmodel);
     QMap <QString,QVariant> getAttributeNotDefault(employeesModel employee);
 
 

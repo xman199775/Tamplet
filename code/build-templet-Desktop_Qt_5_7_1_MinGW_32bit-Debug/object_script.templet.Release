@@ -14,5 +14,6 @@ INPUT(
 ./release\modifysalarycontroller.o
 ./release\employeedetailedreport.o
 ./release\employeesgeneralreport.o
+./release\error.o
 ./release\qrc_qml.o
 );

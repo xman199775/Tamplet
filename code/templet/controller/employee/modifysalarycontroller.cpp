@@ -1,6 +1,11 @@
 #include "modifysalarycontroller.h"
 #include <model/employee/modifysalarymodel.h>
 
+QString modifysalarycontroller:: validateModel(modifySalaryModel modifysalarymodel)
+{
+
+}
+
 QMap <QString,QVariant> modifysalarycontroller :: getAttributeNotDefault(modifySalaryModel modify)
 {
     QMap<QString,QVariant> Attribute;

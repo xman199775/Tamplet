@@ -18,8 +18,8 @@ public:
     bool deleteEmployee(QString empId);
     bool updateEmployee(employeesModel employee);
     bool addModification(modifySalaryModel modify);
-    bool deleteModification(QString empId, QDateTime date);
-    bool updateSalaryModification(modifySalaryModel modify);
+    bool deleteModification(QString empId, QDateTime date  );
+    bool updateSalaryModification(modifySalaryModel modify );
     bool addHoliday(holidayModel holiday);
     bool updateHoliday(holidayModel holidayM);
     bool deleteHoliday(QString empId, QDate date);

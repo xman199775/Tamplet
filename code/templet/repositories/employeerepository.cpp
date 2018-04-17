@@ -245,7 +245,7 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
     {
         late.setAdminID   (get.value("Uid").toString());
         late.setDateOfLate(get.value("Date").toDateTime());
-        late.setLateTime  (get.value("Amount").toInt());
+        late.setLateTime  (get.value("Amount").toString());
         late.setReasons   (get.value("Reason").toString());
 
         report->addLateReport(late);

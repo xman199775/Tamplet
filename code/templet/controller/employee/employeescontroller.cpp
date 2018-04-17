@@ -1,5 +1,10 @@
 #include "employeesController.h"
 
+QString employeesController:: validateModel(employeesModel employeesmodel)
+{
+
+}
+
 QMap <QString,QVariant> employeesController:: getAttributeNotDefault(employeesModel employee)
 {
     QMap<QString,QVariant> Attribute;
