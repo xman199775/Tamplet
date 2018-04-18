@@ -3,12 +3,14 @@
 #include <QMap>
 #include <QVariant>
 #include <model/employee/modifysalarymodel.h>
+#include <controller/employee/error.h>
+#include <repositories/employeerepository.h>
 
 
 class modifysalarycontroller
 {
 public:
-    QString validateModel(modifySalaryModel modifysalarymodel);
+    Error validateModel(modifySalaryModel modifysalarymodel);
     QMap <QString,QVariant> getAttributeNotDefault(modifySalaryModel modify);
 
 

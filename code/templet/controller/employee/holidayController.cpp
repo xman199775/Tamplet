@@ -1,7 +1,52 @@
 #include "holidayController.h"
 
-QString holidayController:: validateModel(holidayModel holidaymodel)
+Error holidayController::validateModel(holidayModel holidaymodel)
 {
+    Error error;
+    if(holidaymodel.getEmpID() =="" )
+    {
+        error.setErrorCode("HCVM1") ;
+        error.setErrorMsg("employee id is empty");
+        return error;
+    }
+    if(holidaymodel.getAdminID() == "")
+    {
+        error.setErrorCode("HCVM2") ;
+        error.setErrorMsg("admin id is empty");
+        return error;
+    }
+    if(holidaymodel.getLeaveReasons() == "")
+    {
+        error.setErrorCode("HCVM5") ;
+        error.setErrorMsg("Reason is empty");
+        return error;
+    }
+    if(holidaymodel.getLeaveNotes() == "")
+    {
+        error.setErrorCode("HCVM6" );
+        error.setErrorMsg("Notes is empty");
+        return error;
+    }
+    if(holidaymodel.getDisc() == 0.0)
+    {
+        error.setErrorCode("HCVM7" );
+        error.setErrorMsg("discount is empty");
+        return error;
+    }
+    if(holidaymodel.getDisc() <0.0)
+    {
+        error.setErrorCode("HCVM7") ;
+        error.setErrorMsg("discount is negative!");
+        return error;
+    }
+
+    //send to repo
+    employeeRepository empRepo;
+    empRepo.addHoliday(holidaymodel);
+
+    error.setErrorCode( "Yes!");
+    error.setErrorMsg("success! coloian 55555");
+    return error;
 
 }
 
@@ -13,9 +58,9 @@ QMap <QString,QVariant> holidayController::getAttributeNotDefault(holidayModel h
     {
         attribute.insert("Empid", holiday.getEmpID());
     }
-    if(holiday.getAdminId() != "")
+    if(holiday.getAdminID() != "")
     {
-        attribute.insert("Uid", holiday.getAdminId());
+        attribute.insert("Uid", holiday.getAdminID());
     }
     if(holiday.getLeaveDate() != QDate(0,0,0))
     {

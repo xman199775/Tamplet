@@ -3,11 +3,13 @@
 #include <QMap>
 #include <QVariant>
 #include <model/employee/holidayModel.h>
+#include <controller/employee/error.h>
+#include <repositories/employeerepository.h>
 
 class holidayController
 {
     public:
-    QString validateModel(holidayModel holidaymodel);
+    Error validateModel(holidayModel holidaymodel);
     QMap <QString,QVariant> getAttributeNotDefault(holidayModel holiday);
 
 };

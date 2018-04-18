@@ -11,11 +11,10 @@ class holidayModel
     QString leaveReasons;
     QString leaveNotes;
     double  disc;
-    QString adminId;
 
     public:
         holidayModel(QString empID = "",QString adminId = "" ,QDate leaveDate=QDate(0,0,0), QDate backDate=QDate(0,0,0),
-                     double  disc = 0.0, QString leaveReasons = "", QString leaveNotes = "" );
+                     QString leaveReasons = "", QString leaveNotes = "", double  disc = 0.0 );
         QString getEmpID() const;
         void    setEmpID(const QString &value);
         QString getAdminID() const;

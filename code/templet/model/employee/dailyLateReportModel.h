@@ -3,32 +3,30 @@
 #include <QDate>
 class dailyLateReportModel
 {
-    QString employeeID;
-    QString adminID;
-    QString employeeDepID;
-    QString lateTime;
+    QString employeeID  ;
+    QString adminID     ;
     QDateTime dateOfLate;
-    QString amount;
-    QString reasons;
+    int amount          ;
+    QString reasons     ;
+    int limit           ;
 
 public:
 
-    dailyLateReportModel(QString employeeID = "", QString adminID = "", QString employeeDepID = "", QString lateTime ="",
-                         QDateTime dateOfLate = QDateTime(),QString amount ="" ,QString reasons = "" );
+    dailyLateReportModel(QString employeeID = "", QString adminID = "",QDateTime dateOfLate = QDateTime(),
+                         int amount =0, QString reasons = "", int limit = 9 );
+
     QString getEmployeeID() const;
     void    setEmployeeID(const QString &value);
     QString getAdminID() const;
     void    setAdminID(const QString &value);
-    QString     getEmployeeDep() const;
-    void    setEmployeeDep(const QString &value);
-    QString     getLateTime() const;
-    void    setLateTime(QString value);
     QDateTime   getDateOfLate() const;
     void    setDateOfLate(const QDateTime &value);
     QString getReasons() const;
     void    setReasons(const QString &value);
-    QString getAmount() const;
-    void setAmount(QString value);
+    int getAmount() const;
+    void setAmount(int value);
+    int getLimit() const;
+    void setLimit(int value);
 };
 
 #endif // DAILYLATEREPORT_H

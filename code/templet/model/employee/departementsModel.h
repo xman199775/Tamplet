@@ -5,13 +5,13 @@
 class departementsModel
 {
     QString depName;
-    int     depID;
+    QString     depID;
     public:
-        departementsModel(QString depName = "", int depID = 0);
+        departementsModel(QString depName = "", QString depID = 0);
         QString getDepName() const;
         void setDepName(const QString &value);
-        int  getDepID() const;
-        void setDepID(const int &value);
+        QString  getDepID() const;
+        void setDepID(const QString &value);
 };
 
 #endif // DEPARTEMENTSMODEL_H

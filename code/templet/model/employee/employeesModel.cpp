@@ -1,9 +1,8 @@
 #include "employeesModel.h"
 
-employeesModel::employeesModel(QString empId, QString employeeName, QString SSN,
-                               QString phoneNumber, QString address,
-                               QTime shiftBegTime, QTime shiftEndTime, QDate dateBirth,
-                               QString email, QString qualification, double salary, QString preferedName)
+employeesModel::employeesModel(QString empId, QString employeeName, QString SSN, QString preferedName,
+                               QDate dateBirth, QString address, QString phoneNumber,QString email,
+                               QTime shiftBegTime, QTime shiftEndTime,double salary, QString qualification)
 {
     this->employeeName  = employeeName  ;
     this->preferedName  = preferedName  ;

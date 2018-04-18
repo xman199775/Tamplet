@@ -1,25 +1,14 @@
 #include "modifysalarymodel.h"
 
 modifySalaryModel::modifySalaryModel(QString employeeID, QString adminID, QDateTime dateOfModify,
-                                     double amount, QString reason, double newSalary, char type)
+                                     char type, double amount, QString reason)
 {
     this->employeeID    = employeeID   ;
     this->adminID       = adminID      ;
     this->dateOfModify  = dateOfModify ;
     this->amount        = amount       ;
     this->reason        = reason       ;
-    this->newSalary     = newSalary    ;
     this->type          = type         ;
-}
-
-double modifySalaryModel::getNewSalary() const
-{
-    return newSalary;
-}
-
-void modifySalaryModel::setNewSalary(double value)
-{
-    newSalary = value;
 }
 
 QString modifySalaryModel::getReason() const
@@ -72,7 +61,7 @@ void modifySalaryModel::setEmployeeID(const QString &value)
     employeeID = value;
 }
 
-bool modifySalaryModel::getType() const
+char modifySalaryModel::getType() const
 {
     return type;
 }

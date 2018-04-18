@@ -1,7 +1,7 @@
 #include "departementsModel.h"
 
 
-departementsModel::departementsModel(QString depName , int  depID )
+departementsModel::departementsModel(QString depName , QString  depID )
 
 {
     this->depName = depName ;
@@ -19,12 +19,12 @@ void departementsModel::setDepName(const QString &value)
     depName = value;
 }
 
-int departementsModel::getDepID() const
+QString departementsModel::getDepID() const
 {
     return depID;
 }
 
-void departementsModel::setDepID(const int &value)
+void departementsModel::setDepID(const QString &value)
 {
     depID = value;
 }

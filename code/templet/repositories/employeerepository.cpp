@@ -66,8 +66,8 @@ bool employeeRepository::addModification(modifySalaryModel modify)
 {
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
 
-    InsertQuery.prepare("INSERT INTO `ModifySalary` (`Empid`, `Uid`, `Date`, `type`, `amount`, `Reasons`, `NewSalary`) "
-                        "Values (:Empid, :Uid, :Date, :type, :amount, :Reasons, :NewSalary)" );
+    InsertQuery.prepare("INSERT INTO `ModifySalary` (`Empid`, `Uid`, `Date`, `type`, `amount`, `Reasons`) "
+                        "Values (:Empid, :Uid, :Date, :type, :amount, :Reasons)" );
 
     InsertQuery.bindValue(":Empid",modify.getEmployeeID() );
     InsertQuery.bindValue(":Uid", modify.getAdminID());
@@ -75,7 +75,7 @@ bool employeeRepository::addModification(modifySalaryModel modify)
     InsertQuery.bindValue(":type", modify.getType());
     InsertQuery.bindValue(":amount", modify.getAmount());
     InsertQuery.bindValue(":Reasons", modify.getReason());
-    InsertQuery.bindValue(":NewSalary", modify.getNewSalary());
+    //InsertQuery.bindValue(":NewSalary", modify.getNewSalary());
 
     return InsertQuery.exec();
 }
@@ -130,7 +130,7 @@ bool employeeRepository::addHoliday(holidayModel holiday)
                         "VALUES (:Empid, :Uid, :SDate, :EDate, :Reason, :Notes, :Disc) " );
 
     InsertQuery.bindValue(":Empid", holiday.getEmpID())         ;
-    InsertQuery.bindValue(":Uid", holiday.getAdminId())         ;
+    InsertQuery.bindValue(":Uid", holiday.getAdminID())         ;
     InsertQuery.bindValue(":SDate", holiday.getLeaveDate())     ;
     InsertQuery.bindValue(":EDate", holiday.getBackDate())      ;
     InsertQuery.bindValue(":Reason", holiday.getLeaveReasons()) ;
@@ -245,7 +245,7 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
     {
         late.setAdminID   (get.value("Uid").toString());
         late.setDateOfLate(get.value("Date").toDateTime());
-        late.setLateTime  (get.value("Amount").toString());
+        late.setAmount    (get.value("Amount").toInt());
         late.setReasons   (get.value("Reason").toString());
 
         report->addLateReport(late);

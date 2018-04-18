@@ -3,10 +3,12 @@
 #include <QMap>
 #include <QVariant>
 #include<model/employee/employeesModel.h>
+#include <controller/employee/error.h>
+#include <repositories/employeerepository.h>
 class employeesController
 {
     public:
-    QString validateModel(employeesModel employeesmodel);
+    Error validateModel(employeesModel employeesmodel);
     QMap <QString,QVariant> getAttributeNotDefault(employeesModel employee);
 
 

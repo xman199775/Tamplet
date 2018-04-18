@@ -8,17 +8,15 @@ private:
     QString   employeeID  ;
     QString   adminID     ;
     QDateTime dateOfModify;
+    char      type        ; // d for dis, z for add and s for boorow . default is dis
     double    amount      ;
     QString   reason      ;
-    char      type        ; // d for dis, z for add and s for boorow . default is dis
-    double    newSalary   ;
+
 public:
     modifySalaryModel(QString employeeID = "", QString adminID = "", QDateTime dateOfModify=QDateTime(),
-                      double amount = 0.0, QString reason = "", double newSalary = 0.0, char type='d');
-    bool getType() const;
+                      char type='d', double amount = 0.0, QString reason = "");
+    char getType() const;
     void setType(char value);
-    double getNewSalary() const;
-    void setNewSalary(double value);
     QString getReason() const;
     void setReason(const QString &value);
     double getAmount() const;
