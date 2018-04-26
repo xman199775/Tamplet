@@ -58,7 +58,9 @@ SOURCES       = ..\templet\system\main.cpp \
 		..\templet\controller\employee\modifysalarycontroller.cpp \
 		..\templet\model\employee\employeedetailedreport.cpp \
 		..\templet\model\employee\employeesgeneralreport.cpp \
-		..\templet\controller\employee\error.cpp release\qrc_qml.cpp
+		..\templet\controller\employee\error.cpp \
+		..\templet\model\employee\efficiencymodel.cpp \
+		..\templet\controller\employee\efficiencycontroller.cpp release\qrc_qml.cpp
 OBJECTS       = release/main.o \
 		release/dailyLateReportModel.o \
 		release/departementsModel.o \
@@ -75,6 +77,8 @@ OBJECTS       = release/main.o \
 		release/employeedetailedreport.o \
 		release/employeesgeneralreport.o \
 		release/error.o \
+		release/efficiencymodel.o \
+		release/efficiencycontroller.o \
 		release/qrc_qml.o
 
 DIST          =  ..\templet\model\employee\dailyLateReportModel.h \
@@ -91,7 +95,9 @@ DIST          =  ..\templet\model\employee\dailyLateReportModel.h \
 		..\templet\controller\employee\modifysalarycontroller.h \
 		..\templet\model\employee\employeedetailedreport.h \
 		..\templet\model\employee\employeesgeneralreport.h \
-		..\templet\controller\employee\error.h ..\templet\system\main.cpp \
+		..\templet\controller\employee\error.h \
+		..\templet\model\employee\efficiencymodel.h \
+		..\templet\controller\employee\efficiencycontroller.h ..\templet\system\main.cpp \
 		..\templet\model\employee\dailyLateReportModel.cpp \
 		..\templet\model\employee\departementsModel.cpp \
 		..\templet\model\employee\employeesModel.cpp \
@@ -106,7 +112,9 @@ DIST          =  ..\templet\model\employee\dailyLateReportModel.h \
 		..\templet\controller\employee\modifysalarycontroller.cpp \
 		..\templet\model\employee\employeedetailedreport.cpp \
 		..\templet\model\employee\employeesgeneralreport.cpp \
-		..\templet\controller\employee\error.cpp
+		..\templet\controller\employee\error.cpp \
+		..\templet\model\employee\efficiencymodel.cpp \
+		..\templet\controller\employee\efficiencycontroller.cpp
 QMAKE_TARGET  = templet
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = templet.exe
@@ -129,7 +137,7 @@ dist:
 	$(ZIP) templet.zip $(SOURCES) $(DIST) ..\templet\templet.pro ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\qdevice.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\device_config.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\common\angle.conf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\qconfig.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\win32\qt_config.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\toolchain.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\win32\rtti.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\qt.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\resources.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\moc.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\uic.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\file_copies.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.7\mingw53_32\mkspecs\features\lex.prf ..\templet\templet.pro ..\templet\qml.qrc ..\..\..\..\Qt\5.7\mingw53_32\lib\qtmain.prl ..\..\..\..\Qt\5.7\mingw53_32\lib\Qt5Widgets.prl ..\..\..\..\Qt\5.7\mingw53_32\lib\Qt5Gui.prl ..\..\..\..\Qt\5.7\mingw53_32\lib\Qt5Sql.prl ..\..\..\..\Qt\5.7\mingw53_32\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\dailyLateReportModel.o release\departementsModel.o release\employeesModel.o release\holidayModel.o release\modifysalarymodel.o release\dailyLateReportController.o release\departementsController.o release\employeescontroller.o release\holidayController.o release\serverconnections.o release\employeerepository.o release\modifysalarycontroller.o release\employeedetailedreport.o release\employeesgeneralreport.o release\error.o release\qrc_qml.o
+	-$(DEL_FILE) release\main.o release\dailyLateReportModel.o release\departementsModel.o release\employeesModel.o release\holidayModel.o release\modifysalarymodel.o release\dailyLateReportController.o release\departementsController.o release\employeescontroller.o release\holidayController.o release\serverconnections.o release\employeerepository.o release\modifysalarycontroller.o release\employeedetailedreport.o release\employeesgeneralreport.o release\error.o release\efficiencymodel.o release\efficiencycontroller.o release\qrc_qml.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -435,7 +443,9 @@ release/main.o: ../templet/system/main.cpp ../../../../Qt/5.7/mingw53_32/include
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
 		../templet/model/employee/dailyLateReportModel.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\templet\system\main.cpp
 
 release/dailyLateReportModel.o: ../templet/model/employee/dailyLateReportModel.cpp ../templet/model/employee/dailyLateReportModel.h \
@@ -910,7 +920,9 @@ release/dailyLateReportController.o: ../templet/controller/employee/dailyLateRep
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\dailyLateReportController.o ..\templet\controller\employee\dailyLateReportController.cpp
 
 release/departementsController.o: ../templet/controller/employee/departementsController.cpp ../templet/controller/employee/departementsController.h \
@@ -1207,7 +1219,9 @@ release/employeescontroller.o: ../templet/controller/employee/employeescontrolle
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
 		../templet/model/employee/dailyLateReportModel.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\employeescontroller.o ..\templet\controller\employee\employeescontroller.cpp
 
 release/holidayController.o: ../templet/controller/employee/holidayController.cpp ../templet/controller/employee/holidayController.h \
@@ -1468,7 +1482,9 @@ release/holidayController.o: ../templet/controller/employee/holidayController.cp
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
 		../templet/model/employee/dailyLateReportModel.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\holidayController.o ..\templet\controller\employee\holidayController.cpp
 
 release/serverconnections.o: ../templet/system/serverconnections.cpp ../templet/system/serverconnections.h \
@@ -1975,7 +1991,9 @@ release/employeerepository.o: ../templet/repositories/employeerepository.cpp ../
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
 		../templet/model/employee/dailyLateReportModel.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\employeerepository.o ..\templet\repositories\employeerepository.cpp
 
 release/modifysalarycontroller.o: ../templet/controller/employee/modifysalarycontroller.cpp ../templet/controller/employee/modifysalarycontroller.h \
@@ -2236,7 +2254,9 @@ release/modifysalarycontroller.o: ../templet/controller/employee/modifysalarycon
 		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
 		../templet/model/employee/employeedetailedreport.h \
 		../templet/model/employee/dailyLateReportModel.h \
-		../templet/model/employee/employeesgeneralreport.h
+		../templet/model/employee/employeesgeneralreport.h \
+		../templet/model/employee/efficiencymodel.h \
+		../templet/controller/employee/efficiencycontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\modifysalarycontroller.o ..\templet\controller\employee\modifysalarycontroller.cpp
 
 release/employeedetailedreport.o: ../templet/model/employee/employeedetailedreport.cpp ../templet/model/employee/employeedetailedreport.h \
@@ -2368,6 +2388,315 @@ release/error.o: ../templet/controller/employee/error.cpp ../templet/controller/
 		../../../../Qt/5.7/mingw53_32/include/QtCore/qarraydata.h \
 		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\error.o ..\templet\controller\employee\error.cpp
+
+release/efficiencymodel.o: ../templet/model/employee/efficiencymodel.cpp ../templet/model/employee/efficiencymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QString \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstring.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qchar.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qglobal.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qconfig.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfeatures.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtypetraits.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qisenum.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlogging.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qflags.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmutex.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringbuilder.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDate \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdatetime.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qhash.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qiterator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qalgorithms.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qhashfunctions.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpair.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbytearraylist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringlist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qregexp.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringmatcher.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\efficiencymodel.o ..\templet\model\employee\efficiencymodel.cpp
+
+release/efficiencycontroller.o: ../templet/controller/employee/efficiencycontroller.cpp ../templet/controller/employee/efficiencycontroller.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QMap \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmap.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qiterator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qglobal.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qconfig.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfeatures.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtypetraits.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qisenum.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlogging.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qflags.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmutex.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qnumeric.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qalgorithms.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qrefcount.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qarraydata.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qhashfunctions.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qchar.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpair.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbytearraylist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbytearray.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qnamespace.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstring.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringbuilder.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringlist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qregexp.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringmatcher.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qhash.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qobject.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qobjectdefs.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcoreevent.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qscopedpointer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmetatype.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qvector.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpoint.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qset.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QVariant \
+		../templet/model/employee/efficiencymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QString \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDate \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdatetime.h \
+		../templet/controller/employee/error.h \
+		../templet/repositories/employeerepository.h \
+		../templet/model/employee/employeesModel.h \
+		../templet/controller/employee/employeescontroller.h \
+		../templet/model/employee/modifysalarymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDateTime \
+		../templet/controller/employee/modifysalarycontroller.h \
+		../templet/model/employee/holidayModel.h \
+		../templet/controller/employee/holidayController.h \
+		../templet/system/serverconnections.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/QtSql \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/QtSqlDepends \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QtCore \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QtCoreDepends \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstractanimation.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qanimationgroup.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qparallelanimationgroup.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpauseanimation.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpropertyanimation.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qvariantanimation.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qeasingcurve.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsequentialanimationgroup.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qendian.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlibraryinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbuffer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdir.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qdiriterator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfileselector.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QObject \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QStringList \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfilesystemwatcher.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlockfile.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qloggingcategory.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qprocess.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qresource.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsavefile.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsettings.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstandardpaths.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstorageinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtemporarydir.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QScopedPointer \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtemporaryfile.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstractproxymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qidentityproxymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsortfilterproxymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstringlistmodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qjsonarray.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qjsonvalue.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qjsondocument.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qjsonobject.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstracteventdispatcher.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstractnativeeventfilter.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmath.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmetaobject.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmimedata.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qobjectcleanuphandler.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpointer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsharedmemory.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsignalmapper.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsocketnotifier.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsystemsemaphore.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtranslator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qwineventnotifier.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmimedatabase.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmimetype.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfactoryinterface.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlibrary.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qplugin.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qpluginloader.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/quuid.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstractstate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qabstracttransition.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qeventtransition.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfinalstate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qhistorystate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsignaltransition.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstatemachine.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qexception.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfuture.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfutureinterface.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qrunnable.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qresultstore.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfuturesynchronizer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qfuturewatcher.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qreadwritelock.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsemaphore.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qthread.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qthreadpool.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qthreadstorage.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qwaitcondition.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qarraydataops.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbitarray.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qbytearraymatcher.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcache.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcollator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcommandlineoption.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcommandlineparser.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qcryptographichash.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qline.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qlinkedlist.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmargins.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qmessageauthenticationcode.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qqueue.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qrect.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qsize.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qregularexpression.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qscopedvaluerollback.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qstack.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtextboundaryfinder.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtimeline.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtimezone.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qversionnumber.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qxmlstream.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/qtcoreversion.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsql.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqldatabase.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqldriver.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqldriverplugin.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlerror.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlfield.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlindex.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlrecord.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlquery.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlresult.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlquerymodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlrelationaldelegate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qitemdelegate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qstyleoption.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qcolor.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qrgb.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qrgba64.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qmatrix.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qregion.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpainterpath.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qimage.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qpixmap.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qvalidator.h \
+		../../../../Qt/5.7/mingw53_32/include/QtGui/qicon.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qslider.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qabstractslider.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qstyle.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qtabbar.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qtabwidget.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qlistview.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.7/mingw53_32/include/QtWidgets/qcombobox.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qsqltablemodel.h \
+		../../../../Qt/5.7/mingw53_32/include/QtSql/qtsqlversion.h \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../../../../Qt/5.7/mingw53_32/include/QtCore/QVector \
+		../templet/model/employee/employeedetailedreport.h \
+		../templet/model/employee/dailyLateReportModel.h \
+		../templet/model/employee/employeesgeneralreport.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\efficiencycontroller.o ..\templet\controller\employee\efficiencycontroller.cpp
 
 release/qrc_qml.o: release/qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_qml.o release\qrc_qml.cpp

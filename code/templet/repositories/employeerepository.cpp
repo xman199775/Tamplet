@@ -75,7 +75,6 @@ bool employeeRepository::addModification(modifySalaryModel modify)
     InsertQuery.bindValue(":type", modify.getType());
     InsertQuery.bindValue(":amount", modify.getAmount());
     InsertQuery.bindValue(":Reasons", modify.getReason());
-    //InsertQuery.bindValue(":NewSalary", modify.getNewSalary());
 
     return InsertQuery.exec();
 }
@@ -296,4 +295,56 @@ EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, 
     }
 
     return report;
+}
+
+bool employeeRepository:: addEfficiency(efficiencymodel efficiency)
+{
+    QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    InsertQuery.prepare("INSERT INTO `efficiency` (`empId` ,`adminId` ,`amount` ,`date` )"
+                        "VALUES (:Empid, :Uid, :amount, :Date " );
+
+    InsertQuery.bindValue(":Empid", efficiency.getEmpId())     ;
+    InsertQuery.bindValue(":Uid", efficiency.getAdminId())     ;
+    InsertQuery.bindValue(":amount", efficiency.getAmount())   ;
+    InsertQuery.bindValue(":Date", efficiency.getDate())       ;
+
+    return InsertQuery.exec();
+
+}
+bool employeeRepository:: deleteEfficiency(QString empId)
+{
+    QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
+
+    deleteQuery.prepare("DELETE FROM `efficiency` WHERE `empId` = :Empid ");
+
+    deleteQuery.bindValue(":Empid", empId);
+
+    return deleteQuery.exec();
+
+
+}
+bool employeeRepository:: updateEfficiency(efficiencymodel efficiency)
+{
+    efficiencycontroller effController ;
+    QMap<QString,QVariant> attribute = effController.getAttributeNotDefault(efficiency);
+    QSqlQuery updateQuery(serverConnections::getInstance()->getserverConnections("general"));
+    QString query="UPDATE `efficiency` SET ";
+    for(QString feildName:attribute.keys())
+    {
+        query+="`";
+        query+=feildName;
+        query+="` = :";
+        query+=feildName;
+        query+=" ";
+    }
+    query+=" WHERE `empId`= :Empid ";
+    updateQuery.prepare(query);
+    for(QString feildName:attribute.keys())
+    {
+        updateQuery.bindValue(":"+feildName,attribute.value(feildName));
+    }
+    updateQuery.bindValue(":Empid",efficiency.getEmpId());
+    return updateQuery.exec();
+
 }

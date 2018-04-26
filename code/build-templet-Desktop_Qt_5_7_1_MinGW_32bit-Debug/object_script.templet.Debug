@@ -15,5 +15,7 @@ INPUT(
 ./debug\employeedetailedreport.o
 ./debug\employeesgeneralreport.o
 ./debug\error.o
+./debug\efficiencymodel.o
+./debug\efficiencycontroller.o
 ./debug\qrc_qml.o
 );

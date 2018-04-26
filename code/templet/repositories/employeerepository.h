@@ -10,6 +10,9 @@
 #include <QVector>
 #include <model/employee/employeedetailedreport.h>
 #include <model/employee/employeesgeneralreport.h>
+#include <model/employee/efficiencymodel.h>
+#include <controller/employee/efficiencycontroller.h>
+
 class employeeRepository
 {
 public:
@@ -25,6 +28,9 @@ public:
     bool deleteHoliday(QString empId, QDate date);
     EmployeeDetailedReport* generateDetailedReport(QString empId, QDateTime range0, QDateTime range1);
     EmployeesGeneralReport* generateGeneralReport(QDate range0, QDate range1);
+    bool addEfficiency(efficiencymodel efficiency);
+    bool deleteEfficiency(QString empId);
+    bool updateEfficiency(efficiencymodel efficiency);
 };
 
 #endif // EMPLOYEEREPOSITORY_H
