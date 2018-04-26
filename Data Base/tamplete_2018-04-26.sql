@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.6.35)
-# Database: UniCode
-# Generation Time: 2018-03-28 15:32:52 +0000
+# Database: tamplete
+# Generation Time: 2018-04-26 13:39:34 +0000
 # ************************************************************
 
 
@@ -28,7 +28,7 @@ CREATE TABLE `Agent` (
   `Website` varchar(30) NOT NULL DEFAULT '',
   `Fax` varchar(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`Aid`),
-  CONSTRAINT `agent_ibfk_1` FOREIGN KEY (`Aid`) REFERENCES `Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `agent_ibfk_1` FOREIGN KEY (`Aid`) REFERENCES `unicode`.`Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -58,7 +58,7 @@ CREATE TABLE `Customer` (
   `KnownFrom` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`CusPhone`),
   KEY `KnownFrom` (`KnownFrom`),
-  CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`KnownFrom`) REFERENCES `Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`KnownFrom`) REFERENCES `unicode`.`Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -70,7 +70,7 @@ CREATE TABLE `Delegate` (
   `Delid` varchar(20) NOT NULL DEFAULT '',
   `Fixed` char(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Delid`),
-  CONSTRAINT `delegate_ibfk_1` FOREIGN KEY (`Delid`) REFERENCES `Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `delegate_ibfk_1` FOREIGN KEY (`Delid`) REFERENCES `unicode`.`Seller` (`Sellid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -83,22 +83,8 @@ CREATE TABLE `DelgateCustomers` (
   `CusPhone` varchar(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`Delid`,`CusPhone`),
   KEY `CusPhone` (`CusPhone`),
-  CONSTRAINT `delgatecustomers_ibfk_1` FOREIGN KEY (`Delid`) REFERENCES `Delegate` (`Delid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `delgatecustomers_ibfk_2` FOREIGN KEY (`CusPhone`) REFERENCES `Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-# Dump of table DepartEmp
-# ------------------------------------------------------------
-
-CREATE TABLE `DepartEmp` (
-  `Empid` varchar(20) NOT NULL DEFAULT '',
-  `DepName` varchar(30) NOT NULL DEFAULT '',
-  PRIMARY KEY (`Empid`,`DepName`),
-  KEY `DepName` (`DepName`),
-  CONSTRAINT `departemp_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `Employee` (`Empid`),
-  CONSTRAINT `departemp_ibfk_2` FOREIGN KEY (`DepName`) REFERENCES `Department` (`Name`)
+  CONSTRAINT `delgatecustomers_ibfk_1` FOREIGN KEY (`Delid`) REFERENCES `unicode`.`Delegate` (`Delid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `delgatecustomers_ibfk_2` FOREIGN KEY (`CusPhone`) REFERENCES `unicode`.`Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -110,9 +96,23 @@ CREATE TABLE `Department` (
   `Name` varchar(30) NOT NULL DEFAULT '',
   `Manager` varchar(20) NOT NULL,
   `Type` varchar(30) NOT NULL DEFAULT '',
-  PRIMARY KEY (`Name`),
-  KEY `Manager` (`Manager`),
-  CONSTRAINT `department_ibfk_1` FOREIGN KEY (`Manager`) REFERENCES `Employee` (`Empid`)
+  PRIMARY KEY (`Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Dump of table Efficiency
+# ------------------------------------------------------------
+
+CREATE TABLE `Efficiency` (
+  `EmpId` varchar(20) NOT NULL DEFAULT '',
+  `AdminId` varchar(20) NOT NULL DEFAULT '',
+  `Amount` double NOT NULL DEFAULT '0',
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`EmpId`),
+  KEY `AdminId` (`AdminId`),
+  CONSTRAINT `efficiency_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `efficiency_ibfk_2` FOREIGN KEY (`AdminId`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -133,7 +133,13 @@ CREATE TABLE `Employee` (
   `ShiftEnd` time NOT NULL,
   `ClearSalary` double NOT NULL,
   `Certti` varchar(20) NOT NULL DEFAULT '',
-  PRIMARY KEY (`Empid`)
+  `Added By` varchar(20) DEFAULT NULL,
+  `Department` varchar(30) NOT NULL,
+  PRIMARY KEY (`Empid`),
+  KEY `f1_idx` (`Added By`),
+  KEY `f2_idx` (`Department`),
+  CONSTRAINT `f1` FOREIGN KEY (`Added By`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `f2` FOREIGN KEY (`Department`) REFERENCES `Department` (`Name`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -149,7 +155,7 @@ CREATE TABLE `Evaluation` (
   `OrderCode` varchar(20) NOT NULL DEFAULT '',
   `Notes` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`CusPhone`,`Date`),
-  CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`CusPhone`) REFERENCES `Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`CusPhone`) REFERENCES `unicode`.`Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -163,7 +169,7 @@ CREATE TABLE `Importaion` (
   `Date` datetime NOT NULL,
   PRIMARY KEY (`Code`),
   KEY `Importid` (`Importid`),
-  CONSTRAINT `importaion_ibfk_1` FOREIGN KEY (`Importid`) REFERENCES `Importer` (`Importid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `importaion_ibfk_1` FOREIGN KEY (`Importid`) REFERENCES `unicode`.`Importer` (`Importid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -176,7 +182,7 @@ CREATE TABLE `Importer` (
   `CompanyName` varchar(35) NOT NULL DEFAULT '',
   `UsualDate` date NOT NULL,
   PRIMARY KEY (`Importid`),
-  CONSTRAINT `importer_ibfk_1` FOREIGN KEY (`Importid`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `importer_ibfk_1` FOREIGN KEY (`Importid`) REFERENCES `unicode`.`Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -190,8 +196,8 @@ CREATE TABLE `ImportItem` (
   `Quantity` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`Impid`,`PID`),
   KEY `PID` (`PID`),
-  CONSTRAINT `importitem_ibfk_1` FOREIGN KEY (`Impid`) REFERENCES `Importaion` (`Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `importitem_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `importitem_ibfk_1` FOREIGN KEY (`Impid`) REFERENCES `unicode`.`Importaion` (`Code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `importitem_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `unicode`.`Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -210,8 +216,8 @@ CREATE TABLE `Invoice` (
   PRIMARY KEY (`Invid`),
   KEY `CusPhone` (`CusPhone`),
   KEY `Seller` (`Seller`),
-  CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`CusPhone`) REFERENCES `Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`Seller`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`CusPhone`) REFERENCES `unicode`.`Customer` (`CusPhone`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`Seller`) REFERENCES `unicode`.`Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -225,8 +231,8 @@ CREATE TABLE `InvoiceItem` (
   `Quantity` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`Invid`,`PID`),
   KEY `PID` (`PID`),
-  CONSTRAINT `invoiceitem_ibfk_1` FOREIGN KEY (`Invid`) REFERENCES `Invoice` (`Invid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `invoiceitem_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `invoiceitem_ibfk_1` FOREIGN KEY (`Invid`) REFERENCES `unicode`.`Invoice` (`Invid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `invoiceitem_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `unicode`.`Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -261,8 +267,8 @@ CREATE TABLE `ModifySalary` (
   `NewSalary` double NOT NULL,
   PRIMARY KEY (`Empid`,`Date`),
   KEY `Uid` (`Uid`),
-  CONSTRAINT `modifysalary_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `Employee` (`Empid`),
-  CONSTRAINT `modifysalary_ibfk_2` FOREIGN KEY (`Uid`) REFERENCES `Employee` (`Empid`)
+  CONSTRAINT `modifysalary_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `unicode`.`Employee` (`Empid`),
+  CONSTRAINT `modifysalary_ibfk_2` FOREIGN KEY (`Uid`) REFERENCES `unicode`.`Employee` (`Empid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -277,7 +283,7 @@ CREATE TABLE `Order` (
   `Invoiceid` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`OrderCode`),
   KEY `Delegate` (`Delegate`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`Delegate`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`Delegate`) REFERENCES `unicode`.`Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -294,7 +300,7 @@ CREATE TABLE `Product` (
   `BName` varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY (`Pid`),
   KEY `BName` (`BName`),
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`BName`) REFERENCES `Brand` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`BName`) REFERENCES `unicode`.`Brand` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -306,7 +312,7 @@ CREATE TABLE `Seller` (
   `Sellid` varchar(20) NOT NULL DEFAULT '',
   `Type` varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY (`Sellid`),
-  CONSTRAINT `seller_ibfk_1` FOREIGN KEY (`Sellid`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `seller_ibfk_1` FOREIGN KEY (`Sellid`) REFERENCES `unicode`.`Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -324,8 +330,8 @@ CREATE TABLE `Vacation` (
   `Disc` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`Empid`,`SDate`),
   KEY `Uid` (`Uid`),
-  CONSTRAINT `vacation_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `Employee` (`Empid`),
-  CONSTRAINT `vacation_ibfk_2` FOREIGN KEY (`Uid`) REFERENCES `Employee` (`Empid`)
+  CONSTRAINT `vacation_ibfk_1` FOREIGN KEY (`Empid`) REFERENCES `unicode`.`Employee` (`Empid`),
+  CONSTRAINT `vacation_ibfk_2` FOREIGN KEY (`Uid`) REFERENCES `unicode`.`Employee` (`Empid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -351,21 +357,8 @@ CREATE TABLE `WareProduct` (
   `Quantity` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`WCode`,`PID`),
   KEY `PID` (`PID`),
-  CONSTRAINT `wareproduct_ibfk_1` FOREIGN KEY (`WCode`) REFERENCES `Ware` (`Wareid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `wareproduct_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-CREATE TABLE `Efficiency` (
-  `EmpId` varchar(20) NOT NULL DEFAULT '',
-  `AdminId` varchar(20) NOT NULL DEFAULT '',
-  `Amount` double NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
-  PRIMARY KEY (`EmpId`),
-  KEY `AdminId` (`AdminId`),
-  CONSTRAINT `efficiency_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `efficiency_ibfk_2` FOREIGN KEY (`AdminId`) REFERENCES `Employee` (`Empid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `wareproduct_ibfk_1` FOREIGN KEY (`WCode`) REFERENCES `unicode`.`Ware` (`Wareid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `wareproduct_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `unicode`.`Product` (`Pid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
