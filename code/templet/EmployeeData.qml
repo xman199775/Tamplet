@@ -261,36 +261,6 @@ ApplicationWindow {
                     font.bold: true
                 }
 
-                Label
-                {
-                    id : emplyeeSalarylabel
-                    text: "صافي المرتب : "
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    font.pixelSize: 20
-                    color: "#000c14"
-                    fontSizeMode: Text.Fit
-                    font.family: "Arial"
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    font.bold: true
-                }
-                SpinBox
-                {
-                    id :emplyeeSalarySpinBox
-                    value: 1200.50
-                    maximumValue: 9999999
-                    decimals: 2
-                    minimumValue: 0
-                    Layout.columnSpan: 3
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    font.pixelSize: 15
-                    font.family: "Arial"
-                    horizontalAlignment: Text.AlignHCenter
-                    font.bold: true
-                }
-
 
             }
 
