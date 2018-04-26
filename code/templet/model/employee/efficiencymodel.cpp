@@ -30,17 +30,17 @@ void efficiencymodel::setAdminId(const QString &value)
     adminId = value;
 }
 
-QDate efficiencymodel::getDate() const
+QDateTime efficiencymodel::getDate() const
 {
     return date;
 }
 
-void efficiencymodel::setDate(const QDate &value)
+void efficiencymodel::setDate(const QDateTime &value)
 {
     date = value;
 }
 
-efficiencymodel::efficiencymodel(QString empId, QString adminId, double amount, QDate date)
+efficiencymodel::efficiencymodel(QString empId, QString adminId, double amount, QDateTime date)
 {
     this->empId = empId  ;
     this->adminId  = adminId;

@@ -59,7 +59,7 @@ QMap <QString,QVariant> efficiencycontroller:: getAttributeNotDefault(efficiency
      {
          Attribute.insert("amount", efficiency.getAmount());
      }
-     if(efficiency.getDate() != QDate(0,0,0))
+     if(efficiency.getDate() != QDateTime(QDate(0,0,0)))
      {
          Attribute.insert("date", efficiency.getDate());
      }
