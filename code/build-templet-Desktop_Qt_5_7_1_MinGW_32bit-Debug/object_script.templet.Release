@@ -15,5 +15,7 @@ INPUT(
 ./release\employeedetailedreport.o
 ./release\employeesgeneralreport.o
 ./release\error.o
+./release\efficiencymodel.o
+./release\efficiencycontroller.o
 ./release\qrc_qml.o
 );

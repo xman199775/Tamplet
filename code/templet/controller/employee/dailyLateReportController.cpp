@@ -39,6 +39,7 @@ Error dailyLateReportController:: validateModel(dailyLateReportModel dailylatere
     }
 
     //send to repo
+
     error.setErrorCode( "Yes!");
     error.setErrorMsg("success! coloian 55555");
     return error;

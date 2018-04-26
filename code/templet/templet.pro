@@ -40,7 +40,9 @@ SOURCES += \
     controller/employee/modifysalarycontroller.cpp \
     model/employee/employeedetailedreport.cpp \
     model/employee/employeesgeneralreport.cpp \
-    controller/employee/error.cpp
+    controller/employee/error.cpp \
+    model/employee/efficiencymodel.cpp \
+    controller/employee/efficiencycontroller.cpp
 
 HEADERS += \
     model/employee/dailyLateReportModel.h \
@@ -57,7 +59,9 @@ HEADERS += \
     controller/employee/modifysalarycontroller.h \
     model/employee/employeedetailedreport.h \
     model/employee/employeesgeneralreport.h \
-    controller/employee/error.h
+    controller/employee/error.h \
+    model/employee/efficiencymodel.h \
+    controller/employee/efficiencycontroller.h
 
 RESOURCES += \
     qml.qrc
