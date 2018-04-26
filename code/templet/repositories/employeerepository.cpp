@@ -1,10 +1,9 @@
-#include "employeeRepository.h"
-
+#include "repositories/employeerepository.h"
 employeeRepository::employeeRepository()
 {
 
 }
-bool employeeRepository:: addEmployee(employeesModel employee)
+bool employeeRepository::addEmployee(employeesModel employee)
 {
 
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
@@ -78,7 +77,7 @@ bool employeeRepository::addModification(modifySalaryModel modify)
 
     return InsertQuery.exec();
 }
-bool employeeRepository:: deleteModification(QString empId, QDateTime date)
+bool employeeRepository::deleteModification(QString empId, QDateTime date)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
 
@@ -90,7 +89,7 @@ bool employeeRepository:: deleteModification(QString empId, QDateTime date)
     return deleteQuery.exec();
 
 }
-bool employeeRepository:: updateSalaryModification(modifySalaryModel modify)
+bool employeeRepository::updateSalaryModification(modifySalaryModel modify)
 {
     modifysalarycontroller modifyController ;
     QMap<QString,QVariant> attribute = modifyController.getAttributeNotDefault(modify);
@@ -228,8 +227,9 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
 
         report->addHoliday(holi);
     }
+
     //get late in the range
-    sql = "SELECT * FROM `Late` WHERE `Empid` = :Empid AND (`Sate` BETWEEN :Range0 AND :Range1);";
+    sql = "SELECT * FROM `Late` WHERE `Empid` = :Empid AND (`Date` BETWEEN :Range0 AND :Range1);";
 
     get.prepare(sql);
 
@@ -250,28 +250,65 @@ EmployeeDetailedReport* employeeRepository::generateDetailedReport(QString empId
         report->addLateReport(late);
     }
 
+    // get efficiency in the range
+    sql = "SELECT * FROM `Efficiency` WHERE `Empid` = :Empid AND (`Date` BETWEEN :Range0 AND :Range1);";
+
+    get.prepare(sql);
+
+    get.bindValue(":Empid", empId);
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    efficiencymodel effic;
+    effic.setEmpId(empId);
+
+    while (get.next())
+    {
+        effic.setAdminId   (get.value("Uid").toString());
+        effic.setDate      (get.value("Date").toDateTime());
+        effic.setAmount     (get.value("Amount").toInt());
+
+        report->addEfficiency(effic);
+    }
+
     return report;
 }
 
-EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, QDate range1)
+EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, QDate range1, QString department)
 {
     EmployeesGeneralReport* report;
     report = new EmployeesGeneralReport;
 
     QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
 
-    QString sql, disc, bonus, lend, lates, holidays, disHoliday;
-    disc       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'd'";
-    bonus      = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'z'";
-    lend       = "SELECT SUM(`Amount`) FROM `ModifySalary` WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 's'";
-    lates      = "SELECT SUM(`Amount`) FROM `Lates`        WHERE `Empid` = e.`Empid` AND (`Date`  BETWEEN :range0 AND :range1)";
-    holidays   = "SELECT COUNT(*)      FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
-    disHoliday = "SELECT SUM(`Disc`)   FROM `Vacation`     WHERE `Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+    QString sql, disc, bonus, lend, lates, holidays, disHoliday, effic, dept;
 
-    sql        = "SELECT e.`EmpId`, e.`Name`, d.`DepName` , e.`ClearSalary`, ("+ disc +") as dis,"
+    if (department == "All" || department == "all")
+        dept = "";
+    else
+        dept = " AND `Department` = '"+ department + "'";
+    disc       = "SELECT SUM(`Amount`) FROM `ModifySalary` as m   WHERE m.`Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'd' ";
+    bonus      = "SELECT SUM(`Amount`) FROM `ModifySalary` as m   WHERE m.`Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'z'";
+    lend       = "SELECT SUM(`Amount`) FROM `ModifySalary` as m   WHERE m.`Empid` = e.`Empid` AND (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 's'";
+    lates      = "SELECT SUM(`Amount`) FROM `Lates` as m          WHERE m.`Empid` = e.`Empid` AND (`Date`  BETWEEN :range0 AND :range1)";
+    holidays   = "SELECT COUNT(*)      FROM `Vacation` as m       WHERE m.`Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+    disHoliday = "SELECT SUM(`Disc`)   FROM `Vacation` as m       WHERE m.`Empid` = e.`Empid` AND (`SDate` BETWEEN :range0 AND :range1)";
+    effic      = "SELECT SUM(`Amount`) FROM `Efficiency` as m     WHERE m.`Empid` = e.`Empid` AND (`Date`  BETWEEN :range0 AND :range1)";
+
+    if (dept != "")
+    {
+        disc       += dept;
+        bonus      += dept;
+        lend       += dept;
+        lates      += dept;
+        holidays   += dept;
+        disHoliday += dept;
+        effic      += dept;
+    }
+
+    sql        = "SELECT e.`EmpId`, e.`Name`, e.`Department` , e.`ClearSalary`, ("+ disc +") as dis,"
                  " ("+ bonus +") as bonus, ("+ lend +") as lend, ("+ lates +") as lend,"
-                 " ("+ holidays +") as holi, ("+ disHoliday +") as disHoli FROM `Employee` as e, `DepartEmp` as d"
-                 " WHERE e.`EmpId` = d.`EmpId` ";
+                 " ("+ holidays +") as holi, ("+ disHoliday +") as disHoli, ("+ effic +") as effic FROM `Employee` as e";
     get.prepare(sql);
 
     get.bindValue(":Range0", range0);
@@ -290,6 +327,7 @@ EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, 
         sreport.TotalDaysLate         = get.value(6).toInt();
         sreport.TotalHolidayDays      = get.value(7).toInt();
         sreport.TotalHolidaysDiscount = get.value(8).toDouble();
+        sreport.TotalEfficiencyAmount = get.value(9).toDouble();
 
         report->addSingleReport(sreport);
     }
@@ -297,7 +335,7 @@ EmployeesGeneralReport* employeeRepository::generateGeneralReport(QDate range0, 
     return report;
 }
 
-bool employeeRepository:: addEfficiency(efficiencymodel efficiency)
+bool employeeRepository::addEfficiency(efficiencymodel efficiency)
 {
     QSqlQuery InsertQuery(serverConnections::getInstance()->getserverConnections("general"));
 
@@ -312,7 +350,7 @@ bool employeeRepository:: addEfficiency(efficiencymodel efficiency)
     return InsertQuery.exec();
 
 }
-bool employeeRepository:: deleteEfficiency(QString empId)
+bool employeeRepository::deleteEfficiency(QString empId)
 {
     QSqlQuery deleteQuery(serverConnections::getInstance()->getserverConnections("general"));
 
@@ -324,7 +362,7 @@ bool employeeRepository:: deleteEfficiency(QString empId)
 
 
 }
-bool employeeRepository:: updateEfficiency(efficiencymodel efficiency)
+bool employeeRepository::updateEfficiency(efficiencymodel efficiency)
 {
     efficiencycontroller effController ;
     QMap<QString,QVariant> attribute = effController.getAttributeNotDefault(efficiency);
@@ -347,4 +385,86 @@ bool employeeRepository:: updateEfficiency(efficiencymodel efficiency)
     updateQuery.bindValue(":Empid",efficiency.getEmpId());
     return updateQuery.exec();
 
+}
+
+SalaryReport* employeeRepository::generateSalaryReport(QDate range0, QDate range1, QString department)
+{
+    SalaryReport* report = new SalaryReport;
+
+    QSqlQuery get(serverConnections::getInstance()->getserverConnections("general"));
+
+    QString totalDis, totalLend, totalBonus, totalHoliDis, clear, dept;
+
+    if (department == "All" || department == "all")
+        dept = "";
+    else
+        dept = " AND `Department` = '"+ department + "';";
+
+    totalDis     = "SELECT SUM(`Amount`)      FROM `ModifySalary`  WHERE (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'd'";
+    totalBonus   = "SELECT SUM(`Amount`)      FROM `ModifySalary`  WHERE (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 'z'";
+    totalLend    = "SELECT SUM(`Amount`)      FROM `ModifySalary`  WHERE (`Date`  BETWEEN :Range0 AND :Range1) AND `type` = 's'";
+    totalHoliDis = "SELECT SUM(`Disc`)        FROM `Vacation`      WHERE (`SDate` BETWEEN :range0 AND :range1)";
+    clear        = "SELECT SUM(`ClearSalary`) FROM `Employee` ";
+
+    if (dept != "")
+    {
+        totalDis        += dept;
+        totalBonus      += dept;
+        totalLend       += dept;
+        totalHoliDis    += dept;
+        clear           += "WHERE `Department` = '"+ department + "';";
+    }
+
+    // Total Discount
+    get.prepare(totalDis);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    get.first();
+
+    report->TotalDiscount = get.value(0).toDouble();
+
+    // Total Bouns
+    get.prepare(totalBonus);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    get.first();
+
+    report->TotalBonus = get.value(0).toDouble();
+
+    // Total Lend
+    get.prepare(totalLend);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    get.first();
+
+    report->TotalLend = get.value(0).toDouble();
+
+    // Total Holiday Discount
+    get.prepare(totalHoliDis);
+
+    get.bindValue(":Range0", range0);
+    get.bindValue(":Range1", range1);
+
+    get.first();
+
+    report->TotalHolidaysDiscount = get.value(0).toDouble();
+
+    // Total Clear Salaries
+
+    get.exec(clear);
+
+    get.first();
+
+    report->ClearSalary = get.value(0).toDouble();
+
+    // Payed Salary
+    report->CalculatePayedSalary();
+
+    return report;
 }

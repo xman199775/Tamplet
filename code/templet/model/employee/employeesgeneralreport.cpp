@@ -2,7 +2,7 @@
 
 EmployeesGeneralReport::EmployeesGeneralReport()
 {
-    reports = new QVector<SingleReport>;
+    reports = new QList<SingleReport>;
 }
 void EmployeesGeneralReport::addSingleReport(SingleReport report)
 {

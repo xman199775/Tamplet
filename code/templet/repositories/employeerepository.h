@@ -12,7 +12,7 @@
 #include <model/employee/employeesgeneralreport.h>
 #include <model/employee/efficiencymodel.h>
 #include <controller/employee/efficiencycontroller.h>
-
+#include <model/employee/salaryreport.h>
 class employeeRepository
 {
 public:
@@ -27,10 +27,12 @@ public:
     bool updateHoliday(holidayModel holidayM);
     bool deleteHoliday(QString empId, QDate date);
     EmployeeDetailedReport* generateDetailedReport(QString empId, QDateTime range0, QDateTime range1);
-    EmployeesGeneralReport* generateGeneralReport(QDate range0, QDate range1);
+    EmployeesGeneralReport* generateGeneralReport(QDate range0, QDate range1, QString department); // For All Departments set department = all or All
     bool addEfficiency(efficiencymodel efficiency);
     bool deleteEfficiency(QString empId);
     bool updateEfficiency(efficiencymodel efficiency);
+    SalaryReport* generateSalaryReport(QDate range0, QDate range1, QString department);
+
 };
 
 #endif // EMPLOYEEREPOSITORY_H

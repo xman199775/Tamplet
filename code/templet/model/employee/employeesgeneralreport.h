@@ -1,20 +1,20 @@
 #ifndef EMPLOYEESGENERALREPORT_H
 #define EMPLOYEESGENERALREPORT_H
 #include <QString>
-#include <QVector>
+#include <QList>
 class EmployeesGeneralReport
 {
 public:
     struct SingleReport
     {
         QString empId, empName, DepName;
-        double ClearSalary, TotalDiscount, TotalBonus, TotalLend, TotalHolidaysDiscount;
+        double ClearSalary, TotalDiscount, TotalBonus, TotalLend, TotalHolidaysDiscount, TotalEfficiencyAmount;
         int TotalDaysLate, TotalHolidayDays;
     };
         EmployeesGeneralReport();
         void addSingleReport(SingleReport report);
 private:
-        QVector<SingleReport>* reports;
+        QList<SingleReport>* reports;
 };
 
 #endif // EMPLOYEESGENERALREPORT_H
